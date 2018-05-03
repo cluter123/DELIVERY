@@ -4,7 +4,7 @@
 
 import java.awt.Graphics2D;
 
-public Interface Obstacle 
+public interface Obstacle 
 {
    /** Draws the obstacle using the given graphics context
 	 *  @param gr the graphics context for drawing
