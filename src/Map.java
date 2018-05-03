@@ -1,6 +1,8 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferStrategy;
 
 public class Map extends Canvas implements Runnable {
@@ -21,7 +23,7 @@ public class Map extends Canvas implements Runnable {
 		// TODO Auto-generated constructor stub
 		handler = new Handler();
 		new MapViewer(WIDTH, HEIGHT, "Game", this);
-		handler.addObject(new Player(20,20,1));
+		handler.addObject(new Player(new Position(20, 20, 0, 0), 0));
 	}
 	
 	public synchronized void start()
@@ -60,7 +62,7 @@ public class Map extends Canvas implements Runnable {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		handler.render(g);
+		handler.render((Graphics2D)g);
 		
 		g.dispose();
 		bs.show();

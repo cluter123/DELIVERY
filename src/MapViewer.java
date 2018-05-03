@@ -1,16 +1,9 @@
-
 import java.awt.Canvas;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class MapViewer extends Canvas{
-
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6818686894060817625L;
+public class MapViewer extends Canvas {
 
 	public MapViewer(int width, int height, String title, Map game) 
 	{
