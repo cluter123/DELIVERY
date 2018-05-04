@@ -2,15 +2,9 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.image.BufferStrategy;
 
 public class Map extends Canvas implements Runnable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1285670934175365101L;
 
 	public static final int WIDTH = 1000, HEIGHT = 1000;
 	private Thread thread;
