@@ -1,4 +1,4 @@
-package Main;
+
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,9 +11,9 @@ public class KeyInput extends KeyAdapter {
 
 	private Handler handle;
 	
-	public KeyInput(Handler handle)
+	public KeyInput(Handler handler)
 	{
-		this.handle = handle;
+		this.handle = handler;
 	}
 	
 	

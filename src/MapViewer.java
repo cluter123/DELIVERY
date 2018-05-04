@@ -1,5 +1,3 @@
-package Main;
-
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,19 +8,15 @@ import javax.swing.Timer;
 
 public class MapViewer extends Canvas{
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6818686894060817625L;
 	private static Timer drawTimer;
+	
 	/**Creates a new frame with the given width height and game
 	 * @param width
 	 * @param height
 	 * @param title
-	 * @param game
+	 * @param map
 	 */
-	public MapViewer(int width, int height, String title, Map game) 
+	public MapViewer(int width, int height, String title, Map map) 
 	{
 		JFrame frame = new JFrame(title);
 		
@@ -42,22 +36,19 @@ public class MapViewer extends Canvas{
 		frame.setLocationRelativeTo(null);
 		
 		//adds the game to the frame
-		frame.add(game);
+		frame.add(map);
 		
 		//makes it so that we can see it
 		frame.setVisible(true);
-		
-//		//starts the game
-//		game.start();
+
 		class AdvanceTimerListener implements ActionListener
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				drawTimer.stop();
-				game.update();
+				map.update();
 				drawTimer.start();
-				game.draw();
+				map.draw();
 			}
 		}
 		

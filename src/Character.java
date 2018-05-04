@@ -33,7 +33,7 @@ public abstract class Character {
 		return points;
 	}
 	
-	public abstract void render(Graphics2D gr);
+	public abstract void draw(Graphics2D gr);
 	
 	public abstract void update();
 	

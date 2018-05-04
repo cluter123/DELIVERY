@@ -1,6 +1,5 @@
-package Main;
-
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 /**
@@ -16,7 +15,6 @@ public class Handler {
 	 */
 	public Handler() 
 	{
-		// TODO Auto-generated constructor stub
 		objects = new LinkedList<Character>();
 	}
 	
@@ -34,7 +32,7 @@ public class Handler {
 	/**Goes through all of the Characters and makes them draw themselves
 	 * @param g
 	 */
-	public void draw(Graphics g)
+	public void draw(Graphics2D g)
 	{
 		for(Character tempCharacter : objects)
 		{
@@ -65,9 +63,9 @@ public class Handler {
 	{
 		for(Character tempCharacter : objects)
 		{
-			if(tempCharacter.getId() == 1)
+			if(tempCharacter == Map.getPlayer(1))
 			{
-				tempCharacter.setVelX(-5);
+				tempCharacter.getPosition().setXVelocity(-5);
 			}
 		}
 	}
@@ -79,9 +77,9 @@ public class Handler {
 	{
 		for(Character tempCharacter : objects)
 		{
-			if(tempCharacter.getId() == 1)
+			if(tempCharacter == Map.getPlayer(1))
 			{
-				tempCharacter.setVelX(5);
+				tempCharacter.getPosition().setXVelocity(5);
 			}
 		}
 	}
@@ -93,10 +91,10 @@ public class Handler {
 	{
 		for(Character tempCharacter : objects)
 		{
-			if(tempCharacter.getId() == 1)
+			if(tempCharacter == Map.getPlayer(1))
 			{
-				if(tempCharacter.getVelX() < 0)
-					tempCharacter.setVelX(0);
+				if(tempCharacter.getPosition().getXVelocity() < 0)
+					tempCharacter.getPosition().setXVelocity(0);
 			}
 		}
 	}
@@ -108,10 +106,10 @@ public class Handler {
 	{
 		for(Character tempCharacter : objects)
 		{
-			if(tempCharacter.getId() == 1)
+			if(tempCharacter == Map.getPlayer(1))
 			{
-				if(tempCharacter.getVelX() > 0)
-					tempCharacter.setVelX(0);
+				if(tempCharacter.getPosition().getXVelocity() > 0)
+					tempCharacter.getPosition().setXVelocity(0);
 			}
 		}
 	}
