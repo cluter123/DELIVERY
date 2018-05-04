@@ -33,10 +33,10 @@ public class Player extends Character
 //		int oldVelY = getVelY();
 //		setVelY(oldVelY + gravity);
 		x += velX;
-		if(velY > 0)
-			velY += gravityFalling;
-		else
-			velY += gravityGoingUp;
+//		if(velY > 0)
+//			velY += gravityFalling;
+//		else
+//			velY += gravityGoingUp;
 		y += velY;
 //		
 		// if it hits a side set the position to the max position and
