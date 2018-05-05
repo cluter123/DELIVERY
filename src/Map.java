@@ -65,7 +65,7 @@ public class Map extends Canvas {
 	
 	public static Player getPlayer(int num)
 	{
-		return playerList.get(num + 1);
+		return playerList.get(num - 1);
 	}
 
 	/**Creates a new Map
