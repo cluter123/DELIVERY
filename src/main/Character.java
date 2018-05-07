@@ -1,11 +1,16 @@
+package main;
 import java.awt.Graphics2D;
 
-public abstract class Obstacle {
+public abstract class Character {
 	
 	private Position position;
-
-	public Obstacle(Position pos) {
+	private int points;
+	
+	public Character(Position pos, int initialPoints) 
+	{
 		position = pos;
+		points = initialPoints;
+		
 	}
 	
 	public void setPosition(Position p)
@@ -24,6 +29,14 @@ public abstract class Obstacle {
 		position.addY(yAmt);
 	}
 	
+	public int getPoints()
+	{
+		return points;
+	}
+
+	public abstract void update();
+	
 	public abstract void draw(Graphics2D gr);
+	
 
 }

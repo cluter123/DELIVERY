@@ -1,9 +1,12 @@
+package main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
-public class Map extends Canvas {
+import characters.Player;
+
+public class MapComponent extends Canvas {
 
 	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number
 	private Handler handler;
@@ -11,7 +14,7 @@ public class Map extends Canvas {
 	/**Creates a Map with a collection of all of the characters 
 	 * 
 	 */
-	public Map() 
+	public MapComponent() 
 	{
 		handler = new Handler();
 		setFocusable(true); //I don't know what this method does but it made the code work
@@ -59,7 +62,7 @@ public class Map extends Canvas {
 	 */
 	public static void main(String[] args) 
 	{
-		new Map();
+		new MapComponent();
 	}
 
 }

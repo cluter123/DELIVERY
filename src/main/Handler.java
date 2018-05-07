@@ -1,9 +1,12 @@
+package main;
 /**
  * @author Conor Mai
  */
 
 import java.awt.Graphics2D;
 import java.util.LinkedList;
+
+import characters.Player;
 
 public class Handler {
 

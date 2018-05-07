@@ -1,3 +1,4 @@
+package main;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ public class MapViewer extends Canvas{
 	 * @param title
 	 * @param map
 	 */
-	public MapViewer(int width, int height, String title, Map map) 
+	public MapViewer(int width, int height, String title, MapComponent map) 
 	{
 		JFrame frame = new JFrame(title);
 		

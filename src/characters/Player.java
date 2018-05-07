@@ -1,6 +1,11 @@
+package characters;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+
+import main.Character;
+import main.MapComponent;
+import main.Position;
 
 public class Player extends Character {
 	
@@ -25,12 +30,11 @@ public class Player extends Character {
 
 	@Override
 	public void update() {
-		
 		getPosition().addX(getPosition().getXVelocity());
 		getPosition().addY(getPosition().getYVelocity());
-		if(getPosition().getY() > (Map.HEIGHT  - getPosition().getYHeight() - 10))
+		if(getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight() - 10))
 		{
-			getPosition().setY(Map.HEIGHT - getPosition().getYHeight() - 10);
+			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight() - 10);
 			getPosition().setYVelocity(0);
 		}
 		if(getPosition().getY() < 0)
@@ -38,9 +42,9 @@ public class Player extends Character {
 			getPosition().setY(0);
 			getPosition().setYVelocity(25);
 		}
-		if(getPosition().getX() > (Map.WIDTH - getPosition().getXLength()))
+		if(getPosition().getX() > (MapComponent.WIDTH - getPosition().getXLength()))
 		{
-			getPosition().setX(Map.WIDTH - getPosition().getXLength());
+			getPosition().setX(MapComponent.WIDTH - getPosition().getXLength());
 			getPosition().setXVelocity(-25);
 		}
 		if(getPosition().getX() < 0)
