@@ -57,12 +57,4 @@ public class MapComponent extends Canvas {
 	}
 	
 
-	/**Creates a new Map
-	 * @param args
-	 */
-	public static void main(String[] args) 
-	{
-		new MapComponent();
-	}
-
 }

@@ -59,5 +59,13 @@ public class MapViewer extends Canvas{
 		drawTimer = new Timer(1000/ FPS, advanceListener);
 		drawTimer.start();
 	}
+	
+	/**Creates a new Map
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	{
+		new MapComponent();
+	}
 
 }

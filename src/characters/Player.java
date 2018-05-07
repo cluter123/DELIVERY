@@ -38,9 +38,9 @@ public class Player extends Character {
 		
 		getPosition().addY(getPosition().getYVelocity());
 		
-		if(getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight() - 10))
+		if(getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight()))
 		{
-			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight() - 10);
+			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight());
 			getPosition().setYVelocity(0);
 		}
 		if(getPosition().getY() < 0)
