@@ -3,9 +3,13 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class Player extends Character {
+	
+	private static int PLAYER_ID = 1;
+	private final int ID;
 
 	public Player(Position pos, int initialPoints) {
 		super(pos, initialPoints);
+		ID = PLAYER_ID++;
 	}
 
 	@Override
@@ -23,22 +27,14 @@ public class Player extends Character {
 	public void update() {
 		
 		getPosition().addX(getPosition().getXVelocity());
-//		if(velY > 0)
-//			velY += gravityFalling;
-//		else
-//			velY += gravityGoingUp;
 		getPosition().addY(getPosition().getYVelocity());
-//		
-		// if it hits a side set the position to the max position and
 		if(getPosition().getY() > (Map.HEIGHT  - getPosition().getYHeight() - 10))
 		{
-//			System.out.println("bot");
 			getPosition().setY(Map.HEIGHT - getPosition().getYHeight() - 10);
 			getPosition().setYVelocity(0);
 		}
 		if(getPosition().getY() < 0)
 		{
-//			System.out.println("top");
 			getPosition().setY(0);
 			getPosition().setYVelocity(25);
 		}
@@ -52,8 +48,12 @@ public class Player extends Character {
 			getPosition().setX(0);
 			getPosition().setXVelocity(25);
 		}
-		//System.out.println(x + " " + y);
 		
+	}
+	
+	public int getID()
+	{
+		return ID;
 	}
 
 }
