@@ -31,6 +31,8 @@ public class KeyInput extends KeyAdapter {
 			handle.movePlayerLeft(1);
 		else if(key == KeyEvent.VK_D) //if the W key has been pressed move the player to the right
 			handle.movePlayerRight(1);
+		else if(key == KeyEvent.VK_W)
+			handle.movePlayerUp(1);
 	}
 	
 	/* (non-Javadoc)

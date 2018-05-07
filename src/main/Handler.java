@@ -92,6 +92,14 @@ public class Handler {
 				player.getPosition().setXVelocity(5);
 	}
 	
+	public void movePlayerUp(int id)
+	{
+		for(Player player : playerList)
+			if(player.getID() == id)
+				player.getPosition().setYVelocity(-20);
+		
+	}
+	
 	/**Goes through the collection of characters and finds the player 1 
 	 * and stops it if it is moving to the left
 	 */

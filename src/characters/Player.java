@@ -31,7 +31,13 @@ public class Player extends Character {
 	@Override
 	public void update() {
 		getPosition().addX(getPosition().getXVelocity());
+		if(getPosition().getYVelocity() > 0)
+			getPosition().addYVelocity(2);
+		else
+			getPosition().addYVelocity(1);
+		
 		getPosition().addY(getPosition().getYVelocity());
+		
 		if(getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight() - 10))
 		{
 			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight() - 10);
