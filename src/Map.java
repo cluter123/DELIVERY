@@ -75,6 +75,7 @@ public class Map extends Canvas {
 	{
 		// TODO Auto-generated method stub
 		new Map();
+		System.out.println("CONOR FIX YOUR GITHUB");
 	}
 
 }
