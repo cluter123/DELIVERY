@@ -18,19 +18,10 @@ public class Player extends Character {
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.setColor(Color.black);
-		g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 50));
-
-		g.drawString("W", getPosition().getX(), getPosition().getY());
-		g.setColor(Color.RED);
-		g.drawRect(getPosition().getX(), getPosition().getY() - 30, getPosition().getXLength(), getPosition().getYHeight());
-		
-	}
-
-	@Override
-	public void update() {
+	public void update() 
+	{
 		getPosition().addX(getPosition().getXVelocity());
+		
 		if(getPosition().getYVelocity() > 0)
 			getPosition().addYVelocity(2);
 		else
@@ -58,6 +49,19 @@ public class Player extends Character {
 			getPosition().setX(0);
 			getPosition().setXVelocity(25);
 		}
+	}
+
+	@Override
+	public void draw(Graphics2D g) 
+	{
+		g.setColor(Color.black);
+		g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 50));
+
+		g.drawString("W", getPosition().getX(), getPosition().getY());
+		g.setColor(Color.RED);
+		g.drawRect(getPosition().getX(), getPosition().getY() - 30, getPosition().getXLength(), getPosition().getYHeight());
+		g.setColor(Color.BLUE);
+		g.draw(getPosition().getBoundingReactangle());
 		
 	}
 	

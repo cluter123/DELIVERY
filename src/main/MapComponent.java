@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
+import characters.Box;
 import characters.Player;
 
 public class MapComponent extends Canvas {
 
-	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number
+	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number kys
 	private Handler handler;
 	
 	/**Creates a Map with a collection of all of the characters 
@@ -20,7 +21,8 @@ public class MapComponent extends Canvas {
 		setFocusable(true); //I don't know what this method does but it made the code work
 		addKeyListener(new KeyInput(handler));
 		new MapViewer(WIDTH, HEIGHT, "Game", this);
-		handler.addPlayer(new Player(new Position (WIDTH/2, HEIGHT/2, 28, 30, 2, 2), 0));
+		handler.addPlayer(new Player(new Position(WIDTH/2, HEIGHT/2, 28, 30, 2, 2), 0));
+		handler.addCharacter(new Box(new Position(WIDTH/2, HEIGHT/2, 28, 30, 2, 2), 0));
 	}
 	
 	/**Calls the handler's update method which updates all of the characters
