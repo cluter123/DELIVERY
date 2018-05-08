@@ -9,6 +9,8 @@ package characters;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
 
 import main.Character;
 import main.MapComponent;
@@ -71,11 +73,13 @@ public class Player extends Character
 	public void draw(Graphics2D g) 
 	{
 		g.setColor(Color.black);
-		g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 50));
+		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
+		FontRenderContext frc = g.getFontRenderContext();
+		TextLayout layout = new TextLayout("W", font, frc);
+		getPosition().setXLength((int)layout.getBounds().getWidth());
+		getPosition().setYHeight((int)layout.getBounds().getHeight());
+		layout.draw(g, (getPosition().getX()), (float)(getPosition().getY() - layout.getBounds().getHeight()));
 
-		g.drawString("W", getPosition().getX(), getPosition().getY());
-		g.setColor(Color.RED);
-		g.drawRect(getPosition().getX(), getPosition().getY() - 30, getPosition().getXLength(), getPosition().getYHeight());
 		g.setColor(Color.BLUE);
 		g.draw(getPosition().getBoundingReactangle());
 	}
