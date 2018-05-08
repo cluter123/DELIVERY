@@ -52,12 +52,12 @@ public class Player extends Character
 			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight());
 			getPosition().setYVelocity(0);
 		}
-		if (getPosition().getY() < 0)
+		if (getPosition().getY() - getPosition().getYHeight() < 0)
 		{
-			getPosition().setY(0);
+			getPosition().setY(getPosition().getYHeight());
 			getPosition().setYVelocity(0);
 		}
-		if (getPosition().getX() > (MapComponent.WIDTH - getPosition().getXLength()))
+		if (getPosition().getX() + getPosition().getXLength() > (MapComponent.WIDTH))
 		{
 			getPosition().setX(MapComponent.WIDTH - getPosition().getXLength());
 			getPosition().setXVelocity(0);

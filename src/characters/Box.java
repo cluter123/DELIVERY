@@ -2,6 +2,8 @@ package characters;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
 
 import main.Character;
 import main.MapComponent;
@@ -27,9 +29,9 @@ public class Box extends Character {
 			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight());
 			getPosition().setYVelocity(-1);
 		}
-		if(getPosition().getY() < 0)
+		if (getPosition().getY() - getPosition().getYHeight() < 0)
 		{
-			getPosition().setY(0);
+			getPosition().setY(getPosition().getYHeight());
 			getPosition().setYVelocity(1);
 		}
 		if(getPosition().getX() > (MapComponent.WIDTH - getPosition().getXLength()))
@@ -46,14 +48,18 @@ public class Box extends Character {
 	}
 
 	@Override
-	public void draw(Graphics2D gr) {
-		// TODO Auto-generated method stub
-		gr.setColor(Color.black);
-		gr.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 50));
-
+	public void draw(Graphics2D g) {
+		g.setColor(Color.black);
+		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
+		FontRenderContext frc = g.getFontRenderContext();
 		String s = "T: " + framesTest / 60;
-		gr.drawString(s, getPosition().getX(), getPosition().getY());
+		TextLayout layout = new TextLayout(s, font, frc);
+		getPosition().setXLength((int)layout.getBounds().getWidth());
+		getPosition().setYHeight((int)layout.getBounds().getHeight());
+		layout.draw(g, (getPosition().getX()), getPosition().getY());
 		
+		g.setColor(Color.BLUE);
+		g.draw(getPosition().getBoundingReactangle());
 	}
 
 }
