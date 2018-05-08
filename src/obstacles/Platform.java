@@ -15,7 +15,9 @@ public class Platform extends Obstacle {
 	@Override
 	public void draw(Graphics2D gr) {
 		// TODO Auto-generated method stub
-
+		
+		gr.drawString("asdf", getPosition().getX(), getPosition().getY());
+		gr.fill(getPosition().getBoundingReactangle());
 	}
 
 }

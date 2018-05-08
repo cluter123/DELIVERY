@@ -1,3 +1,10 @@
+/** 
+ *  Displays and continuously updates the game
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-14-18
+ */
 package main;
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -7,15 +14,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-public class MapViewer extends Canvas{
-
+public class MapViewer extends Canvas
+{
 	private static Timer drawTimer;
 	
+	/** Creates a new Map
+	 */
+	public static void main(String[] args) 
+	{
+		new MapComponent();
+	}
+	
 	/**Creates a new frame with the given width height and game
-	 * @param width
-	 * @param height
-	 * @param title
-	 * @param map
+	 * @param width the width of the frame
+	 * @param height the height of the frame
+	 * @param title the name of the game
+	 * @param map the map component containing and controlling the game's variables
 	 */
 	public MapViewer(int width, int height, String title, MapComponent map) 
 	{
@@ -45,7 +59,8 @@ public class MapViewer extends Canvas{
 		class AdvanceTimerListener implements ActionListener
 		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				drawTimer.stop();
 				map.update();
 				drawTimer.start();
@@ -59,13 +74,4 @@ public class MapViewer extends Canvas{
 		drawTimer = new Timer(1000/ FPS, advanceListener);
 		drawTimer.start();
 	}
-	
-	/**Creates a new Map
-	 * @param args
-	 */
-	public static void main(String[] args) 
-	{
-		new MapComponent();
-	}
-
 }

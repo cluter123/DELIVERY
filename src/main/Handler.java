@@ -12,6 +12,7 @@ public class Handler {
 
 	public LinkedList<Character> characters;
 	public LinkedList<Player> playerList;
+	public LinkedList<Obstacle> obstacles;
 	
 	/** Creates a linked list of characters
 	 * 
@@ -20,6 +21,7 @@ public class Handler {
 	{
 		characters = new LinkedList<Character>();
 		playerList = new LinkedList<Player>();
+		obstacles = new LinkedList<Obstacle>();
 	}
 	
 	/**Goes through all of the Characters and updates them
@@ -39,6 +41,9 @@ public class Handler {
 	 */
 	public void draw(Graphics2D g)
 	{
+		for(Obstacle tempObstacle : obstacles)
+			tempObstacle.draw(g);
+		
 		for(Character tempCharacter : characters)
 			tempCharacter.draw(g);
 	
@@ -72,6 +77,14 @@ public class Handler {
 		playerList.remove(p);
 	}
 	
+	public void addObstacle(Obstacle obstacle)
+	{
+		obstacles.add(obstacle);
+	}
+	public void removeObstacle(Obstacle obstacle)
+	{
+		 obstacles.remove(obstacle);
+	}
 	/**Goes through the collection of characters and finds the player 1 
 	 * and makes it move to the left
 	 */
