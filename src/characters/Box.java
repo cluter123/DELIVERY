@@ -51,7 +51,7 @@ public class Box extends Character {
 		gr.setColor(Color.black);
 		gr.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 50));
 
-		String s = "" + framesTest;
+		String s = "T: " + framesTest / 60;
 		gr.drawString(s, getPosition().getX(), getPosition().getY());
 		
 	}

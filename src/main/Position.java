@@ -111,6 +111,7 @@ public class Position {
 	
 	public Rectangle getBoundingReactangle()
 	{
-		return new Rectangle(xPos, yPos, length, height);
+		// this has been changed for strings that draw from bottom left
+		return new Rectangle(xPos, yPos - height, length, height);
 	}
 }

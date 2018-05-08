@@ -13,13 +13,16 @@ public class Monster extends Character {
 	}
 
 	@Override
-	public void update() {
+	public void update() 
+	{
+		//find the Player1 position and move in the direction of it
 
 	}
 
 	@Override
-	public void draw(Graphics2D gr) {
-
+	public void draw(Graphics2D gr) 
+	{
+		//draw the @ string at x , y
 	}
 
 }
