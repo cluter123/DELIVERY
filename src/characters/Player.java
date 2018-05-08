@@ -78,7 +78,7 @@ public class Player extends Character
 		TextLayout layout = new TextLayout("W", font, frc);
 		getPosition().setXLength((int)layout.getBounds().getWidth());
 		getPosition().setYHeight((int)layout.getBounds().getHeight());
-		layout.draw(g, (getPosition().getX()), (float)(getPosition().getY() - layout.getBounds().getHeight()));
+		layout.draw(g, (getPosition().getX()), getPosition().getY());
 
 		g.setColor(Color.BLUE);
 		g.draw(getPosition().getBoundingReactangle());
