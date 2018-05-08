@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.MapComponent;
@@ -48,18 +49,33 @@ public class Box extends Character {
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.setColor(Color.black);
+	public void draw(Graphics2D gr) 
+	{
+		// delete after everyone recognizes the superior code
+		gr.setColor(Color.BLACK);
+		gr.drawString("Red: Conor's code that he copied from the internet" , 0, MapComponent.HEIGHT / 2);
+		
+		gr.setColor(Color.black);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
-		FontRenderContext frc = g.getFontRenderContext();
+		FontRenderContext frc = gr.getFontRenderContext();
 		String s = "T: " + framesTest / 60;
 		TextLayout layout = new TextLayout(s, font, frc);
 		getPosition().setXLength((int)layout.getBounds().getWidth());
 		getPosition().setYHeight((int)layout.getBounds().getHeight());
-		layout.draw(g, (getPosition().getX()), getPosition().getY());
+		layout.draw(gr, (getPosition().getX()), getPosition().getY());
 		
-		g.setColor(Color.BLUE);
-		g.draw(getPosition().getBoundingReactangle());
+		//better code just make bounding rectangle this one
+		gr.setColor(Color.RED);
+		Rectangle2D bounds = layout.getBounds();
+		bounds.setRect(bounds.getX()+getPosition().getX(),
+                bounds.getY()+getPosition().getY(),
+                bounds.getWidth(),
+                bounds.getHeight());
+		gr.draw(bounds);
+		
+		// lesser code
+		gr.setColor(Color.BLUE);
+		gr.draw(getPosition().getBoundingReactangle());
 	}
 
 }

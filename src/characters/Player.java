@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.MapComponent;
@@ -70,18 +71,27 @@ public class Player extends Character
 	}
 
 	@Override
-	public void draw(Graphics2D g) 
+	public void draw(Graphics2D gr) 
 	{
-		g.setColor(Color.black);
+		gr.setColor(Color.black);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
-		FontRenderContext frc = g.getFontRenderContext();
+		FontRenderContext frc = gr.getFontRenderContext();
 		TextLayout layout = new TextLayout("W", font, frc);
 		getPosition().setXLength((int)layout.getBounds().getWidth());
 		getPosition().setYHeight((int)layout.getBounds().getHeight());
-		layout.draw(g, (getPosition().getX()), getPosition().getY());
+		layout.draw(gr, (getPosition().getX()), getPosition().getY());
 
-		g.setColor(Color.BLUE);
-		g.draw(getPosition().getBoundingReactangle());
+		gr.setColor(Color.RED);
+		
+		Rectangle2D bounds = layout.getBounds();
+		bounds.setRect(bounds.getX()+getPosition().getX(),
+                bounds.getY()+getPosition().getY(),
+                bounds.getWidth(),
+                bounds.getHeight());
+		gr.draw(bounds);
+		
+		gr.setColor(Color.BLUE);
+		gr.draw(getPosition().getBoundingReactangle());
 	}
 	
 	/** Returns the player's id
