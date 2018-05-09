@@ -1,16 +1,16 @@
 package main;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Character {
 	
 	private Position position;
 	private int points;
+	private Rectangle2D bounds;
 	
-	public Character(Position pos, int initialPoints) 
+	public Character(Position pos) 
 	{
 		position = pos;
-		points = initialPoints;
-		
 	}
 	
 	public void setPosition(Position p)
@@ -33,7 +33,17 @@ public abstract class Character {
 	{
 		return points;
 	}
+	
+	public void setBoundingRectangle(Rectangle2D bounds)
+	{
+		this.bounds = bounds;
+	}
 
+	public Rectangle2D getBoundingRectangle()
+	{
+		return bounds;
+	}
+	
 	public abstract void update();
 	
 	public abstract void draw(Graphics2D gr);

@@ -4,12 +4,11 @@ import java.awt.Graphics2D;
 import main.Character;
 import main.Position;
 
-public class Monster extends Character {
-	
-	private static final String SYMBOL = "@";
+public class Monster extends Character 
+{
 
-	public Monster(Position pos, int initialPoints) {
-		super(pos, initialPoints);
+	public Monster(Position pos) {
+		super(pos);
 	}
 
 	@Override

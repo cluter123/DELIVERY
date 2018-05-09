@@ -1,20 +1,15 @@
 package main;
-import java.awt.Rectangle;
 
 public class Position {
 	
 	private int xPos;
 	private int yPos;
-	private int length;
-	private int height;
 	private int xVel;
 	private int yVel;
 
-	public Position(int xPosition, int yPosition, int xLength, int yHeight, int xVelocity, int yVelocity) {
+	public Position(int xPosition, int yPosition, int xVelocity, int yVelocity) {
 		xPos = xPosition;
 		yPos = yPosition;
-		length = xLength;
-		height = yHeight;
 		xVel = xVelocity;
 		yVel = yVelocity;
 	}
@@ -29,15 +24,15 @@ public class Position {
 		return yPos;
 	}
 	
-	public int getXLength()
-	{
-		return length;
-	}
-	
-	public int getYHeight()
-	{
-		return height;
-	}
+//	public int getXLength()
+//	{
+//		return length;
+//	}
+//	
+//	public int getYHeight()
+//	{
+//		return height;
+//	}
 	
 	public void setX(int x)
 	{
@@ -49,15 +44,15 @@ public class Position {
 		yPos = y;
 	}
 	
-	public void setXLength(int xLength)
-	{
-		length = xLength;
-	}
-	
-	public void setYHeight(int yHeight)
-	{
-		height = yHeight;
-	}
+//	public void setXLength(int xLength)
+//	{
+//		length = xLength;
+//	}
+//	
+//	public void setYHeight(int yHeight)
+//	{
+//		height = yHeight;
+//	}
 	
 	public void addX(int x)
 	{
@@ -69,15 +64,15 @@ public class Position {
 		yPos += y;
 	}
 	
-	public void addXLength(int xLength)
-	{
-		length += xLength;
-	}
-	
-	public void addYHeight(int yHeight)
-	{
-		height += yHeight;
-	}
+//	public void addXLength(int xLength)
+//	{
+//		length += xLength;
+//	}
+//	
+//	public void addYHeight(int yHeight)
+//	{
+//		height += yHeight;
+//	}
 	
 	public int getXVelocity()
 	{
@@ -109,9 +104,9 @@ public class Position {
 		yVel += yVelocity;
 	}
 	
-	public Rectangle getBoundingReactangle()
-	{
-		// this has been changed for strings that draw from bottom left
-		return new Rectangle(xPos, yPos - height, length, height);
-	}
+//	public Rectangle getBoundingReactangle()
+//	{
+//		// this has been changed for strings that draw from bottom left
+//		return new Rectangle(xPos, yPos - height, length, height);
+//	}
 }

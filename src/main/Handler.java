@@ -85,6 +85,7 @@ public class Handler {
 	{
 		 obstacles.remove(obstacle);
 	}
+	
 	/**Goes through the collection of characters and finds the player 1 
 	 * and makes it move to the left
 	 */

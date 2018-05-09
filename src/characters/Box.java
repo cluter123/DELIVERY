@@ -2,6 +2,7 @@ package characters;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
@@ -12,11 +13,13 @@ import main.Position;
 
 public class Box extends Character {
 
-	int framesTest;
+	private int framesTest;
 
-	public Box(Position pos, int initialPoints) {
-		super(pos, initialPoints);
+	public Box(Position pos) {
+		super(pos);
 		framesTest = 0;
+		Rectangle2D rect = new Rectangle(0, 0, 0, 0);
+		setBoundingRectangle(rect);
 	}
 
 	@Override
@@ -25,26 +28,6 @@ public class Box extends Character {
 		getPosition().addX(getPosition().getXVelocity());
 		getPosition().addY(getPosition().getYVelocity());
 		
-		if(getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight()))
-		{
-			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight());
-			getPosition().setYVelocity(-1);
-		}
-		if (getPosition().getY() - getPosition().getYHeight() < 0)
-		{
-			getPosition().setY(getPosition().getYHeight());
-			getPosition().setYVelocity(1);
-		}
-		if(getPosition().getX() > (MapComponent.WIDTH - getPosition().getXLength()))
-		{
-			getPosition().setX(MapComponent.WIDTH - getPosition().getXLength());
-			getPosition().setXVelocity(-1);
-		}
-		if(getPosition().getX() < 0)
-		{
-			getPosition().setX(0);
-			getPosition().setXVelocity(1);
-		}
 		framesTest++;
 	}
 
@@ -60,8 +43,6 @@ public class Box extends Character {
 		FontRenderContext frc = gr.getFontRenderContext();
 		String s = "T: " + framesTest / 60;
 		TextLayout layout = new TextLayout(s, font, frc);
-		getPosition().setXLength((int)layout.getBounds().getWidth());
-		getPosition().setYHeight((int)layout.getBounds().getHeight());
 		layout.draw(gr, (getPosition().getX()), getPosition().getY());
 		
 		//better code just make bounding rectangle this one
@@ -73,9 +54,12 @@ public class Box extends Character {
                 bounds.getHeight());
 		gr.draw(bounds);
 		
-		// lesser code
-		gr.setColor(Color.BLUE);
-		gr.draw(getPosition().getBoundingReactangle());
+		//sets the bounding rectangle to the rectangle
+		setBoundingRectangle(bounds);
 	}
 
+	public void setFramesTest(int frame)
+	{
+		framesTest = frame;
+	}
 }
