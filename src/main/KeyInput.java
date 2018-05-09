@@ -32,10 +32,13 @@ public class KeyInput extends KeyAdapter
 		System.out.println("Pressed: " + key);
 		
 		//if a player 1 key is pressed it will go through the handle and change its movement
-		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) //if the A or left key has been pressed move the player to the left
+		//if the A or left key has been pressed move the player to the left
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) 
 			handle.movePlayerLeft(1);
-		else if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) //if the D or right key has been pressed move the player to the right
+		//if the D or right key has been pressed move the player to the right
+		else if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) 
 			handle.movePlayerRight(1);
+		//if the W, up, or space key has been pressed make the player jump
 		else if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_SPACE)
 			handle.movePlayerUp(1);
 	}
@@ -49,9 +52,11 @@ public class KeyInput extends KeyAdapter
 		int key = e.getKeyCode();
 		System.out.println("RELEASED: " + key);
 		//if a player 1 key is released it will go through the handle and change its movement
-		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) //if the A key has been released stop the player to the left
+		//if the A or left key has been released stop the player to the left
+		if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) 
 			handle.stopPlayerLeft(1);
-		else if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) //if the W key has been released stop the player to the right
+		//if the D or right key has been released stop the player to the right
+		else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) 
 			handle.stopPlayerRight(1);		
 	}
 	
