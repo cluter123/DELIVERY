@@ -1,3 +1,11 @@
+/** 
+ *  Creates all game variables like characters and obstacles.
+ *  Can update and draw all of them
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-14-18
+ */
 package main;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -8,13 +16,15 @@ import characters.Box;
 import characters.Player;
 import obstacles.Platform;
 
-public class MapComponent extends Canvas {
-
-	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number kys
+public class MapComponent extends Canvas 
+{
+	
+	private static final double FRAME_RATIO = .75;
+	public static final int WIDTH = 1000;  
+	public static final int HEIGHT = (int) (WIDTH * FRAME_RATIO);
 	private Handler handler;
 	
-	/**Creates a Map with a collection of all of the characters 
-	 * 
+	/** Creates a Map with a collection of all of the characters 
 	 */
 	public MapComponent() 
 	{
@@ -22,12 +32,12 @@ public class MapComponent extends Canvas {
 		setFocusable(true); //I don't know what this method does but it made the code work
 		addKeyListener(new KeyInput(handler));
 		new MapViewer(WIDTH, HEIGHT, "Game", this);
-		handler.addPlayer(new Player(new Position(WIDTH/2, HEIGHT/2, 28, 30, 2, 2), 0));
-		handler.addCharacter(new Box(new Position(WIDTH/2, HEIGHT/2, 28, 30, 2, 2), 0));
-		handler.addObstacle(new Platform(new Position(WIDTH/2, HEIGHT/2, 28, 30, 0, 0)));
+		handler.addPlayer(new Player(new Position(WIDTH / 2, HEIGHT / 2, 28, 30, 0, 0), 0));
+		handler.addCharacter(new Box(new Position(WIDTH / 2, HEIGHT / 2, 28, 30, 2, 2), 0));
+		handler.addObstacle(new Platform(new Position(WIDTH / 2, HEIGHT/2, 28, 30, 0, 0)));
 	}
 	
-	/**Calls the handler's update method which updates all of the characters
+	/** Calls the handler's update method which updates all of the characters
 	 * 
 	 */
 	public void update()
@@ -35,8 +45,8 @@ public class MapComponent extends Canvas {
 		handler.update();
 	}
 	
-	/**Creates a bufferStrategy if there is none
-	 * each time it is called it creates a new Graphics that draws the graphics
+	/** Creates a bufferStrategy if there is none.
+	 *  Each time it is called, it creates a new Graphics2D that draws the graphics
 	 * 
 	 */
 	public void draw()
@@ -59,6 +69,4 @@ public class MapComponent extends Canvas {
 		g.dispose();
 		bs.show();
 	}
-	
-
 }

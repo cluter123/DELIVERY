@@ -1,21 +1,24 @@
-package main;
-/**
- * @author Conor Mai
+/** 
+ *  Contains and updates all the characters and obstacles in the game
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-14-18
  */
-
+package main;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 import characters.Player;
 
-public class Handler {
+public class Handler 
+{
 
 	public LinkedList<Character> characters;
 	public LinkedList<Player> playerList;
 	public LinkedList<Obstacle> obstacles;
 	
 	/** Creates a linked list of characters
-	 * 
 	 */
 	public Handler() 
 	{
@@ -24,8 +27,7 @@ public class Handler {
 		obstacles = new LinkedList<Obstacle>();
 	}
 	
-	/**Goes through all of the Characters and updates them
-	 * 
+	/** Goes through all of the Characters and updates them
 	 */
 	public void update()
 	{
@@ -36,8 +38,8 @@ public class Handler {
 			tempPlayer.update();
 	}
 	
-	/**Goes through all of the Characters and makes them draw themselves
-	 * @param g
+	/** Goes through all of the Characters and makes them draw themselves
+	 *  @param g the Graphics2D object to draw with
 	 */
 	public void draw(Graphics2D g)
 	{
@@ -51,42 +53,57 @@ public class Handler {
 			tempPlayer.draw(g);
 	}
 	
-	/**Adds an object to the list of characters
-	 * @param object
+	/** Adds an object to the list of characters
+	 *  @param object the Character to be removed
 	 */
 	public void addCharacter(Character object)
 	{
 		characters.add(object);
 	}
 	
-	/**removes an object from the list of characters
-	 * @param object
+	/** Removes an object from the list of characters
+	 *  @param object the Character to be removed
 	 */
 	public void removeCharacter(Character object)
 	{
 		characters.remove(object);
 	}
 	
+	/** Adds a given player
+	 *  @param p the player to be added
+	 */
 	public void addPlayer(Player p)
 	{
 		playerList.add(p);
 	}
 	
+	/** Removes a given player
+	 *  @param p the player to be removed
+	 */
 	public void removePlayer(Player p)
 	{
 		playerList.remove(p);
 	}
 	
+	/** Adds a given obstacle
+	 *  @param obstacle the obstacle to be added
+	 */
 	public void addObstacle(Obstacle obstacle)
 	{
 		obstacles.add(obstacle);
 	}
+	
+	/** Removes a given obstacle
+	 *  @param obstacle the obstacle to be removed
+	 */
 	public void removeObstacle(Obstacle obstacle)
 	{
 		 obstacles.remove(obstacle);
 	}
-	/**Goes through the collection of characters and finds the player 1 
-	 * and makes it move to the left
+	
+	/** Goes through the collection of characters and finds the player 1 
+	 *  and makes it move to the left
+	 *  @param id the player id
 	 */
 	public void movePlayerLeft(int id)
 	{
@@ -95,8 +112,9 @@ public class Handler {
 				player.getPosition().setXVelocity(-5);
 	}
 	
-	/**Goes through the collection of characters and finds the player 1 
-	 * and makes it move to the right
+	/** Goes through the collection of characters and finds the player 1 
+	 *  and makes it move to the right
+	 *  @param id the player id
 	 */
 	public void movePlayerRight(int id)
 	{
@@ -105,6 +123,10 @@ public class Handler {
 				player.getPosition().setXVelocity(5);
 	}
 	
+	/** Goes through the collection of characters and finds the player 1 
+	 *  and moves it up
+	 *  @param id the player id
+	 */
 	public void movePlayerUp(int id)
 	{
 		for(Player player : playerList)
@@ -113,8 +135,9 @@ public class Handler {
 		
 	}
 	
-	/**Goes through the collection of characters and finds the player 1 
-	 * and stops it if it is moving to the left
+	/** Goes through the collection of characters and finds the player 1 
+	 *  and stops it if it is moving to the left
+	 *  @param id the player id
 	 */
 	public void stopPlayerLeft(int id) 
 	{
@@ -126,8 +149,9 @@ public class Handler {
 			}
 	}
 	
-	/**Goes through the collection of characters and finds the player 1 
-	 * and stops it if it is moving to the right
+	/** Goes through the collection of characters and finds the player 1 
+	 *  and stops it if it is moving to the right
+	 *  @param id the player id
 	 */
 	public void stopPlayerRight(int id)
 	{

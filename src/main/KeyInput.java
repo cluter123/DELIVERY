@@ -1,42 +1,47 @@
-package main;
-/**
- * @author Conor Mai
- *
+/** 
+ *  Updates player based on key input from user
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-14-18
  */
-
+package main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class KeyInput extends KeyAdapter {
+public class KeyInput extends KeyAdapter 
+{
 
 	private Handler handle;
 	
+	/** Creates a new KeyInput Object with a given Handler
+	 * @param handler the handler containing the game variables
+	 */
 	public KeyInput(Handler handler)
 	{
 		handle = handler;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
+	/** Moves player based on key pressed by user
+	 *  @param e the key event made by user
 	 */
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		System.out.println(KeyEvent.VK_A);
 		int key = e.getKeyCode();
 		System.out.println("Pressed: " + key);
 		
 		//if a player 1 key is pressed it will go through the handle and change its movement
-		if(key == KeyEvent.VK_A) //if the A key has been pressed move the player to the left
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) //if the A or left key has been pressed move the player to the left
 			handle.movePlayerLeft(1);
-		else if(key == KeyEvent.VK_D) //if the W key has been pressed move the player to the right
+		else if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) //if the D or right key has been pressed move the player to the right
 			handle.movePlayerRight(1);
-		else if(key == KeyEvent.VK_W)
+		else if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_SPACE)
 			handle.movePlayerUp(1);
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.awt.event.KeyAdapter#keyReleased(java.awt.event.KeyEvent)
+	/** Stops player based on key released by user
+	 *  @param e the key event made by user
 	 */
 	@Override
 	public void keyReleased(KeyEvent e)
@@ -44,14 +49,14 @@ public class KeyInput extends KeyAdapter {
 		int key = e.getKeyCode();
 		System.out.println("RELEASED: " + key);
 		//if a player 1 key is released it will go through the handle and change its movement
-		if(key == KeyEvent.VK_A) //if the A key has been released stop the player to the left
+		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) //if the A key has been released stop the player to the left
 			handle.stopPlayerLeft(1);
-		else if(key == KeyEvent.VK_D) //if the W key has been released stop the player to the right
+		else if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) //if the W key has been released stop the player to the right
 			handle.stopPlayerRight(1);		
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.awt.event.KeyAdapter#keyTyped(java.awt.event.KeyEvent)
+	/** Ignores key typed by user
+	 *  @param e the key event made by user
 	 */
 	@Override
 	public void keyTyped(KeyEvent e)

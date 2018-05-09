@@ -4,7 +4,8 @@ import java.awt.Graphics2D;
 import main.Character;
 import main.Position;
 
-public class Monster extends Character {
+public class Monster extends Character 
+{
 	
 	private static final String SYMBOL = "@";
 

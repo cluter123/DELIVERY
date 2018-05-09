@@ -10,17 +10,17 @@ import java.awt.geom.Rectangle2D;
 import main.Obstacle;
 import main.Position;
 
-public class Platform extends Obstacle {
+public class Platform extends Obstacle 
+{
 
-	public Platform(Position pos) {
+	public Platform(Position pos) 
+	{
 		super(pos);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void draw(Graphics2D gr) {
-		// TODO Auto-generated method stub
-		
+	public void draw(Graphics2D gr) 
+	{	
 		gr.setColor(Color.GRAY);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
@@ -38,5 +38,4 @@ public class Platform extends Obstacle {
                 bounds.getHeight());
 		gr.draw(bounds);
 	}
-
 }

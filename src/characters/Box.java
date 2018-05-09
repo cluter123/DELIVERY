@@ -1,3 +1,12 @@
+/** 
+ *  Please don't fight in the comments
+ *  Tester box class to check frame rate, updating, and drawing
+ *  works correctly
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-14-18
+ */
 package characters;
 import java.awt.Color;
 import java.awt.Font;
@@ -10,11 +19,13 @@ import main.Character;
 import main.MapComponent;
 import main.Position;
 
-public class Box extends Character {
+public class Box extends Character 
+{
 
 	int framesTest;
 
-	public Box(Position pos, int initialPoints) {
+	public Box(Position pos, int initialPoints) 
+	{
 		super(pos, initialPoints);
 		framesTest = 0;
 	}

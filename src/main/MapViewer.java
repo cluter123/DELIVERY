@@ -26,6 +26,7 @@ public class MapViewer extends Canvas
 	}
 	
 	/**Creates a new frame with the given width height and game
+	 * Draws and updates map continuously
 	 * @param width the width of the frame
 	 * @param height the height of the frame
 	 * @param title the name of the game
@@ -71,7 +72,7 @@ public class MapViewer extends Canvas
 		ActionListener advanceListener = new AdvanceTimerListener();
 		
 		final int FPS = 60; // Milliseconds between timer ticks
-		drawTimer = new Timer(1000/ FPS, advanceListener);
+		drawTimer = new Timer(1000 / FPS, advanceListener);
 		drawTimer.start();
 	}
 }
