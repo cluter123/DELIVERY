@@ -9,15 +9,17 @@ import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.MapComponent;
-import main.Position;
 
 public class Box extends Character {
 
 	private int framesTest;
-
+	private int height;
+	private int width;
 	public Box(int x, int y) {
 		super(x, y);
 		framesTest = 0;
+		height = 30;
+		width = 28;
 	}
 
 	@Override
@@ -25,7 +27,7 @@ public class Box extends Character {
 	{
 		x += velX;
 		y += velY;
-		
+		setBoundingRectangle(new Rectangle(x, y - height, width, height));
 		framesTest++;
 	}
 
@@ -39,21 +41,16 @@ public class Box extends Character {
 		gr.setColor(Color.black);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
-		String s = "T: " + framesTest / 60;
+		String s = "T: " + framesTest /*/ 60 */;
 		TextLayout layout = new TextLayout(s, font, frc);
 		layout.draw(gr, x, y);
 		
 		//better code just make bounding rectangle this one
 		gr.setColor(Color.RED);
 		Rectangle2D bounds = layout.getBounds();
-		bounds.setRect(bounds.getX() + x,
-                bounds.getY() + y,
-                bounds.getWidth(),
-                bounds.getHeight());
-		gr.draw(bounds);
-		
-		//sets the bounding rectangle to the rectangle
-		setBoundingRectangle(bounds);
+		width = (int) bounds.getWidth();
+		height = (int) bounds.getHeight();
+		gr.draw(getBoundingRectangle());
 	}
 
 	public void setFramesTest(int frame)

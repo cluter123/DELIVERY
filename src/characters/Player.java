@@ -23,7 +23,7 @@ import obstacles.Platform;
 public class Player extends Character 
 {
 	private static final int ID = 1;
-	private int height = 30;
+	private int height = 31;
 	private int width = 30;
 	Handler handler;
 	TextLayout layout;
@@ -122,12 +122,9 @@ public class Player extends Character
 		layout.draw(gr, x, y);
 		
 		Rectangle2D bounds = layout.getBounds();
-		bounds.setRect(bounds.getX()+x,
-                bounds.getY()+y,
-                bounds.getWidth(),
-                bounds.getHeight());
 		
-//		setBoundingRectangle(bounds);
+		height = (int) bounds.getHeight();
+		width = (int) bounds.getWidth();
 		
 		gr.setColor(Color.RED);
 		gr.draw(getBoundingRectangle());
