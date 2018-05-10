@@ -17,6 +17,7 @@ public class Handler
 	public LinkedList<Character> characters;
 	public LinkedList<Player> playerList;
 	public LinkedList<Obstacle> obstacles;
+	public LinkedList<House> houses;
 	
 	/** Creates a linked list of characters
 	 */
@@ -25,6 +26,7 @@ public class Handler
 		characters = new LinkedList<Character>();
 		playerList = new LinkedList<Player>();
 		obstacles = new LinkedList<Obstacle>();
+		houses = new LinkedList<House>();
 	}
 	
 	/** Goes through all of the Characters and updates them
@@ -51,6 +53,9 @@ public class Handler
 	
 		for(Player tempPlayer : playerList)
 			tempPlayer.draw(g);
+		
+		for(House tempHouse : houses)
+			tempHouse.draw(g);
 	}
 	
 	/** Adds an object to the list of characters
@@ -99,6 +104,22 @@ public class Handler
 	public void removeObstacle(Obstacle obstacle)
 	{
 		 obstacles.remove(obstacle);
+	}
+	
+	/** 
+	 *  @param 
+	 */
+	public void addHouse(House house)
+	{
+		houses.add(house);
+	}
+	
+	/** 
+	 *  @param 
+	 */
+	public void removeHouse(House house)
+	{
+		 houses.remove(house);
 	}
 	
 	/** Goes through the collection of characters and finds the player 1 

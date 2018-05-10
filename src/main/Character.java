@@ -53,7 +53,7 @@ public abstract class Character
 		position.addY(yAmt);
 	}
 	
-	/** Returns amount of points charater owns
+	/** Returns amount of points character owns
 	 *  @return points character owns 
 	 */
 	public int getPoints()
