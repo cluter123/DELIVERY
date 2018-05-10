@@ -93,7 +93,7 @@ public class Handler {
 	{
 		for(Player player : playerList)
 			if(player.getID() == id)
-				player.velX = -5;
+				player.setVelX(-5);
 	}
 	
 	/**Goes through the collection of characters and finds the player 1 
@@ -103,14 +103,14 @@ public class Handler {
 	{
 		for(Player player : playerList)
 			if(player.getID() == id)
-				player.velX = 5;
+				player.setVelX(5);
 	}
 	
 	public void movePlayerUp(int id)
 	{
 		for(Player player : playerList)
 			if(player.getID() == id)
-				player.velY = -20;
+				player.setVelY(-20);
 		
 	}
 	
@@ -122,8 +122,8 @@ public class Handler {
 		for(Player player : playerList)
 			if(player.getID() == id)
 			{
-				if(player.velX < 0)
-					player.velX = 0;
+				if(player.getVelX() < 0)
+					player.setVelX(0);
 			}
 	}
 	
@@ -135,8 +135,8 @@ public class Handler {
 		for(Player player : playerList)
 			if(player.getID() == id)
 			{
-				if(player.velX > 0)
-					player.velX = 0;
+				if(player.getVelX() > 0)
+					player.setVelX(0);
 			}
 	}
 }

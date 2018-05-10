@@ -15,6 +15,7 @@ public class Box extends Character {
 	private int framesTest;
 	private int height;
 	private int width;
+	
 	public Box(int x, int y) {
 		super(x, y);
 		framesTest = 0;
@@ -25,9 +26,9 @@ public class Box extends Character {
 	@Override
 	public void update() 
 	{
-		x += velX;
-		y += velY;
-		setBoundingRectangle(new Rectangle(x, y - height, width, height));
+		setX(getX() + getVelX());
+		setY(getY() + getVelY());
+		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		framesTest++;
 	}
 
@@ -41,7 +42,7 @@ public class Box extends Character {
 		FontRenderContext frc = gr.getFontRenderContext();
 		String s = "T: " + framesTest /*/ 60 */;
 		TextLayout layout = new TextLayout(s, font, frc);
-		layout.draw(gr, x, y);
+		layout.draw(gr, getX(), getY());
 		
 		//better code just make bounding rectangle this one
 		gr.setColor(Color.RED);

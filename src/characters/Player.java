@@ -23,8 +23,8 @@ import obstacles.Platform;
 public class Player extends Character 
 {
 	private static final int ID = 1;
-	private int height = 31;
-	private int width = 30;
+	private int height;
+	private int width;
 	Handler handler;
 	TextLayout layout;
 	
@@ -43,40 +43,18 @@ public class Player extends Character
 	public void update()
 	{
 		// Gravity
-		x += velX;
+		setX(getX() + getVelX());
 		
-		if (velY > 0)
-			velY += 2;
+		if (getVelY() > 0)
+			setVelY(getVelY() + 2);
 		else
-			velY += 1;
+			setVelY(getVelY() + 1);
 		
-		y += velY;
+		setY(getY() + getVelY());
 		
-		setBoundingRectangle(new Rectangle(x, y - height, width, height));
+		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		checkCollisions();
 		
-		//Needs to be removed because all computers make different windows for some reason
-//		// Bounds the player within the frame 
-//		if (getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight()))
-//		{
-//			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight());
-//			getPosition().setYVelocity(0);
-//		}
-//		if (getPosition().getY() - getPosition().getYHeight() < 0)
-//		{
-//			getPosition().setY(getPosition().getYHeight());
-//			getPosition().setYVelocity(0);
-//		}
-//		if (getPosition().getX() + getPosition().getXLength() > (MapComponent.WIDTH))
-//		{
-//			getPosition().setX(MapComponent.WIDTH - getPosition().getXLength());
-//			getPosition().setXVelocity(0);
-//		}
-//		if (getPosition().getX() < 0)
-//		{
-//			getPosition().setX(0);
-//			getPosition().setXVelocity(0);
-//		}
 	}
 
 	private void checkCollisions()
@@ -100,12 +78,12 @@ public class Player extends Character
 				{
 					System.out.println("Hit a Platform!");
 					//code that would happen if you hit something
-					if(velY > 0)
+					if(getVelY() > 0)
 					{
 						System.out.println("Changed Velocity");
-						velY = 0;
-						y = tempObstacle.y;
-						setBoundingRectangle(new Rectangle(x, y - height, width, height));
+						setVelY(0);
+						setY(tempObstacle.getY());
+						setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 					}
 				}
 			}
@@ -119,7 +97,7 @@ public class Player extends Character
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
 		TextLayout layout = new TextLayout("W", font, frc);
-		layout.draw(gr, x, y);
+		layout.draw(gr, getX(), getY());
 		
 		Rectangle2D bounds = layout.getBounds();
 		

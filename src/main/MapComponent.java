@@ -10,7 +10,11 @@ import obstacles.Platform;
 
 public class MapComponent extends Canvas {
 
-	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 582455343476691375L;
+	private static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number 
 	private Handler handler;
 	
 	/**Creates a Map with a collection of all of the characters 
