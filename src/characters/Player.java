@@ -104,7 +104,7 @@ public class Player extends Character
 					{
 						System.out.println("Changed Velocity");
 						velY = 0;
-						y = (tempObstacle.getPosition().getY());
+						y = tempObstacle.y;
 						setBoundingRectangle(new Rectangle(x, y - height, width, height));
 					}
 				}

@@ -36,8 +36,6 @@ public class Box extends Character {
 	{
 		// delete after everyone recognizes the superior code
 		gr.setColor(Color.BLACK);
-		gr.drawString("Red: Conor's code that he copied from the internet" , 0, MapComponent.HEIGHT / 2);
-		
 		gr.setColor(Color.black);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();

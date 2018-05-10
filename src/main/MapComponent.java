@@ -26,7 +26,7 @@ public class MapComponent extends Canvas {
 		//adding characters to the window
 		handler.addPlayer(new Player(WIDTH / 2, HEIGHT / 2, handler));
 		handler.addCharacter(new Box(WIDTH/2, HEIGHT/2));
-		handler.addObstacle(new Platform(new Position(0, HEIGHT / 3, 0, 0)));
+		handler.addObstacle(new Platform(0, HEIGHT / 3 * 2, WIDTH, 100));
 	}
 	
 	/**Calls the handler's update method which updates all of the characters

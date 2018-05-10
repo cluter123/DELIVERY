@@ -6,8 +6,8 @@ import main.Position;
 
 public class WallSegment extends Obstacle {
 
-	public WallSegment(Position pos) {
-		super(pos);
+	public WallSegment(int x, int y) {
+		super(x, y);
 	}
 
 	@Override

@@ -7,8 +7,8 @@ import main.Position;
 
 public class Lava extends Obstacle {
 
-	public Lava(Position pos) {
-		super(pos);
+	public Lava(int x, int y) {
+		super(x, y);
 		// TODO Auto-generated constructor stub
 	}
 

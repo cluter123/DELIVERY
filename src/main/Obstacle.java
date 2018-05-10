@@ -5,22 +5,16 @@ import java.awt.geom.Rectangle2D;
 
 public abstract class Obstacle {
 	
+	protected int x;
+	public int y;
+	protected int velX;
+	protected int velY;
 	private Position position;
 	private Rectangle2D bounds;
 
-	public Obstacle(Position pos) {
-		position = pos;
-		bounds = new Rectangle(0,0,0,0);
-	}
-	
-	public void setPosition(Position p)
-	{
-		position = p;
-	}
-	
-	public Position getPosition()
-	{
-		return position;
+	public Obstacle(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 	
 	public void movePosition(int xAmt, int yAmt)

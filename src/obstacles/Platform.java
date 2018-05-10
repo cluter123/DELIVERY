@@ -13,12 +13,14 @@ import main.Position;
 
 public class Platform extends Obstacle {
 
-	private static final int width = 500;
-	private static final int height = 300;
+	private int width;
+	private int height;
 
-	public Platform(Position pos) {
-		super(pos);
-		setBoundingRectangle(new Rectangle(getPosition().getX(), getPosition().getY(), width, height));
+	public Platform(int x, int y, int width, int height) {
+		super(x, y);
+		this.width = width;
+		this.height = height;
+		setBoundingRectangle(new Rectangle(x, y, width, height));
 		// TODO Auto-generated constructor stub
 	}
 
