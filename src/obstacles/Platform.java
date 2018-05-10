@@ -3,6 +3,7 @@ package obstacles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
@@ -12,8 +13,12 @@ import main.Position;
 
 public class Platform extends Obstacle {
 
+	private static final int width = 500;
+	private static final int height = 300;
+
 	public Platform(Position pos) {
 		super(pos);
+		setBoundingRectangle(new Rectangle(getPosition().getX(), getPosition().getY(), width, height));
 		// TODO Auto-generated constructor stub
 	}
 
@@ -22,19 +27,19 @@ public class Platform extends Obstacle {
 		// TODO Auto-generated method stub
 		
 		gr.setColor(Color.GRAY);
-		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
-		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout layout = new TextLayout("_____", font, frc);
-		layout.draw(gr, (getPosition().getX()), getPosition().getY());
-
-		gr.setColor(Color.RED);
-		
-		Rectangle2D bounds = layout.getBounds();
-		bounds.setRect(bounds.getX()+getPosition().getX(),
-                bounds.getY()+getPosition().getY(),
-                bounds.getWidth(),
-                bounds.getHeight());
-		gr.draw(bounds);
+//		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
+//		FontRenderContext frc = gr.getFontRenderContext();
+//		TextLayout layout = new TextLayout("_____", font, frc);
+//		layout.draw(gr, (getPosition().getX()), getPosition().getY());
+//
+//		gr.setColor(Color.RED);
+//		
+//		Rectangle2D bounds = layout.getBounds();
+//		bounds.setRect(bounds.getX()+getPosition().getX(),
+//                bounds.getY()+getPosition().getY(),
+//                bounds.getWidth(),
+//                bounds.getHeight());
+		gr.draw(getBoundingRectangle());
 	}
 
 }

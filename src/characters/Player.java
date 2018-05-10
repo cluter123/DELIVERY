@@ -16,11 +16,15 @@ import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.Handler;
+import main.Obstacle;
 import main.Position;
+import obstacles.Platform;
 
 public class Player extends Character 
 {
 	private static final int ID = 1;
+	private int height = 30;
+	private int width = 30;
 	Handler handler;
 	TextLayout layout;
 	
@@ -28,12 +32,10 @@ public class Player extends Character
 	 *  @param pos the initial position of the player
 	 *  @param initialPoints the initial points of the player
 	 */
-	public Player(Position pos, Handler handle) 
+	public Player(int x, int y, Handler handle) 
 	{
-		super(pos);
+		super(x, y);
 		this.handler = handle;
-		Rectangle2D rect = new Rectangle(0, 0, 0, 0);
-		setBoundingRectangle(rect);
 	}
 	/** Updates the player's position depending on where it is in the frame
 	 */
@@ -41,17 +43,20 @@ public class Player extends Character
 	public void update()
 	{
 		// Gravity
-		getPosition().addX(getPosition().getXVelocity());
+		x += velX;
 		
-		if (getPosition().getYVelocity() > 0)
-			getPosition().addYVelocity(2);
+		if (velY > 0)
+			velY += 2;
 		else
-			getPosition().addYVelocity(1);
+			velY += 1;
 		
-		getPosition().addY(getPosition().getYVelocity());
+		y += velY;
 		
+		setBoundingRectangle(new Rectangle(x, y - height, width, height));
 		checkCollisions();
-//		// Bounds the player within the frame
+		
+		//Needs to be removed because all computers make different windows for some reason
+//		// Bounds the player within the frame 
 //		if (getPosition().getY() > (MapComponent.HEIGHT  - getPosition().getYHeight()))
 //		{
 //			getPosition().setY(MapComponent.HEIGHT - getPosition().getYHeight());
@@ -82,8 +87,26 @@ public class Player extends Character
 			{
 				if(tempCharacter instanceof Box)
 				{
-					
-						((Box)tempCharacter).setFramesTest(0);
+					//code that would happen if you hit something
+					((Box)tempCharacter).setFramesTest(0);
+				}
+			}
+		}
+		for(Obstacle tempObstacle : handler.obstacles)
+		{
+			if(getBoundingRectangle().intersects(tempObstacle.getBoundingRectangle()))
+			{
+				if(tempObstacle instanceof Platform)
+				{
+					System.out.println("Hit a Platform!");
+					//code that would happen if you hit something
+					if(velY > 0)
+					{
+						System.out.println("Changed Velocity");
+						velY = 0;
+						y = (tempObstacle.getPosition().getY());
+						setBoundingRectangle(new Rectangle(x, y - height, width, height));
+					}
 				}
 			}
 		}
@@ -96,15 +119,15 @@ public class Player extends Character
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
 		TextLayout layout = new TextLayout("W", font, frc);
-		layout.draw(gr, (getPosition().getX()), getPosition().getY());
+		layout.draw(gr, x, y);
 		
 		Rectangle2D bounds = layout.getBounds();
-		bounds.setRect(bounds.getX()+getPosition().getX(),
-                bounds.getY()+getPosition().getY(),
+		bounds.setRect(bounds.getX()+x,
+                bounds.getY()+y,
                 bounds.getWidth(),
                 bounds.getHeight());
 		
-		setBoundingRectangle(bounds);
+//		setBoundingRectangle(bounds);
 		
 		gr.setColor(Color.RED);
 		gr.draw(getBoundingRectangle());

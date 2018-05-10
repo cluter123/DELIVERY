@@ -24,8 +24,8 @@ public class MapComponent extends Canvas {
 		new MapViewer(WIDTH, HEIGHT, "Game", this);
 		
 		//adding characters to the window
-		handler.addPlayer(new Player(new Position(WIDTH/2, HEIGHT/2, 2, 2), handler));
-		handler.addCharacter(new Box(new Position(WIDTH/2, HEIGHT/2, 0, 0)));
+		handler.addPlayer(new Player(WIDTH / 2, HEIGHT / 2, handler));
+//		handler.addCharacter(new Box(new Position(WIDTH/2, HEIGHT/2, 0, 0)));
 		handler.addObstacle(new Platform(new Position(WIDTH/2, HEIGHT/2, 0, 0)));
 	}
 	

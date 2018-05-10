@@ -7,8 +7,8 @@ import main.Position;
 public class Monster extends Character 
 {
 
-	public Monster(Position pos) {
-		super(pos);
+	public Monster(int x, int y) {
+		super(x, y);
 	}
 
 	@Override

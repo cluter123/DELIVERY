@@ -4,30 +4,16 @@ import java.awt.geom.Rectangle2D;
 
 public abstract class Character {
 	
-	private Position position;
+	protected int x, y, velX, velY;
 	private int points;
 	private Rectangle2D bounds;
 	
-	public Character(Position pos) 
+	public Character(int x, int y) 
 	{
-		position = pos;
+		this.x = x;
+		this.y = y;
 	}
 	
-	public void setPosition(Position p)
-	{
-		position = p;
-	}
-	
-	public Position getPosition()
-	{
-		return position;
-	}
-	
-	public void movePosition(int xAmt, int yAmt)
-	{
-		position.addX(xAmt);
-		position.addY(yAmt);
-	}
 	
 	public int getPoints()
 	{

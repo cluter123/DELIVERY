@@ -15,18 +15,16 @@ public class Box extends Character {
 
 	private int framesTest;
 
-	public Box(Position pos) {
-		super(pos);
+	public Box(int x, int y) {
+		super(x, y);
 		framesTest = 0;
-		Rectangle2D rect = new Rectangle(0, 0, 0, 0);
-		setBoundingRectangle(rect);
 	}
 
 	@Override
 	public void update() 
 	{
-		getPosition().addX(getPosition().getXVelocity());
-		getPosition().addY(getPosition().getYVelocity());
+		x += velX;
+		y += velY;
 		
 		framesTest++;
 	}
@@ -43,13 +41,13 @@ public class Box extends Character {
 		FontRenderContext frc = gr.getFontRenderContext();
 		String s = "T: " + framesTest / 60;
 		TextLayout layout = new TextLayout(s, font, frc);
-		layout.draw(gr, (getPosition().getX()), getPosition().getY());
+		layout.draw(gr, x, y);
 		
 		//better code just make bounding rectangle this one
 		gr.setColor(Color.RED);
 		Rectangle2D bounds = layout.getBounds();
-		bounds.setRect(bounds.getX()+getPosition().getX(),
-                bounds.getY()+getPosition().getY(),
+		bounds.setRect(bounds.getX() + x,
+                bounds.getY() + y,
                 bounds.getWidth(),
                 bounds.getHeight());
 		gr.draw(bounds);
