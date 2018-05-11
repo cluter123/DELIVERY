@@ -15,7 +15,7 @@ public class Platform extends Obstacle {
 	private int width;
 	private int height;
 
-	public Platform(int x, int y, int width, int height) {
+	public Platform(int x, int y) {
 		super(x, y);
 		this.width = 0;
 		this.height = 0;

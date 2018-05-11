@@ -16,6 +16,7 @@ import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.Handler;
+import main.MapViewer;
 import main.Obstacle;
 import main.Position;
 import obstacles.Platform;
@@ -70,12 +71,18 @@ public class Player extends Character
 				if(tempCharacter instanceof Box)
 				{
 					//code that would happen if you hit something
-					setPoints(getPoints() + ((Box)tempCharacter).getFramesTest());
+					
 					((Box)tempCharacter).setFramesTest(0);
 				}
 				if(tempCharacter instanceof Monster)
 				{
 					alive = false;
+				}
+				if(tempCharacter instanceof House)
+				{
+					if(((House)tempCharacter).isOpen())
+					setPoints(getPoints() + tempCharacter.getPoints());
+					((House)tempCharacter).close();
 				}
 			}
 		}
@@ -127,8 +134,10 @@ public class Player extends Character
 		}
 		else
 		{
+			gr.setColor(Color.BLACK);
+			gr.fillRect(0, 0, MapViewer.WIDTH, MapViewer.HEIGHT);
 			gr.setColor(Color.RED);
-			gr.drawString("GAME OVER", 500, 500);
+			gr.drawString("GAME OVER", MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2);
 			setBoundingRectangle(null);
 		}
 		gr.drawString("Points: " + getPoints(), 0, 35);

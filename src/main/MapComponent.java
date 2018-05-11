@@ -7,6 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import characters.Box;
+import characters.House;
 import characters.Monster;
 import characters.Player;
 import obstacles.Platform;
@@ -33,7 +34,9 @@ public class MapComponent extends Canvas {
 		//adding characters to the window
 		handler.addPlayer(new Player(MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2, handler));
 		handler.addCharacter(new Box(MapViewer.WIDTH/2, MapViewer.HEIGHT/2));
-		handler.addObstacle(new Platform(0, MapViewer.HEIGHT / 3 * 2, MapViewer.WIDTH, 100));
+		for(int k = 0; k < 4; k++)
+			handler.addObstacle(new Platform(MapViewer.WIDTH * k / 4, MapViewer.HEIGHT / 3 * 2));
+		handler.addCharacter(new House(0, MapViewer.HEIGHT /  2, Color.RED));
 		handler.addCharacter(new Monster(0, 0, handler));
 	}
 	
