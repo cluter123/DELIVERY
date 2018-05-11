@@ -8,7 +8,6 @@ import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 
 import main.Character;
-import main.MapComponent;
 
 public class Box extends Character {
 

@@ -1,6 +1,5 @@
 package main;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 public abstract class Obstacle {

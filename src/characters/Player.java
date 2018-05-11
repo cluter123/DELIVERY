@@ -64,20 +64,27 @@ public class Player extends Character
 
 	private void checkCollisions()
 	{
+		// if it falls off the bottom it is no longer alive
+		if(getY() - height > MapViewer.HEIGHT)
+			alive = false;
+		
 		for(Character tempCharacter : handler.characters)
 		{
 			if(getBoundingRectangle().intersects(tempCharacter.getBoundingRectangle()))
 			{
+				// what happens when it hits the box
 				if(tempCharacter instanceof Box)
 				{
 					//code that would happen if you hit something
 					
 					((Box)tempCharacter).setFramesTest(0);
 				}
+				// what happens when it hits the monster
 				if(tempCharacter instanceof Monster)
 				{
 					alive = false;
 				}
+				// what happens when it hits the house 
 				if(tempCharacter instanceof House)
 				{
 					if(((House)tempCharacter).isOpen())
@@ -91,15 +98,18 @@ public class Player extends Character
 		{
 			if(getBoundingRectangle().intersects(tempObstacle.getBoundingRectangle()))
 			{
+				// when it hits the playform
 				if(tempObstacle instanceof Platform)
 				{
 					//code that would happen if you hit something
+					// if it is under the platform
 					if(getVelY() > 0)
 					{
 						setVelY(0);
 						setY((int) (tempObstacle.getY() - tempObstacle.getBoundingRectangle().getHeight()));
 						setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 					}
+					// if it is over the platform
 					if(getVelY() < 0)
 					{
 						setVelY(0);

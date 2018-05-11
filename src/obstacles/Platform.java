@@ -30,7 +30,7 @@ public class Platform extends Obstacle {
 		gr.setColor(Color.GRAY);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout layout = new TextLayout("XXXXX", font, frc);
+		TextLayout layout = new TextLayout("PLATFORM", font, frc);
 		layout.draw(gr, getX(), getY());
 
 		gr.setColor(Color.RED);

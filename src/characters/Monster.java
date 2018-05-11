@@ -14,7 +14,7 @@ import main.Position;
 public class Monster extends Character 
 {
 	private static final int MONSTER_SIZE = 20;
-	private static final int UPDATE_DIRECTION_TIME = 20;
+	private static final int UPDATE_DIRECTION_TIME = 100;
 	private static final int SPEED = 5;
 	private int timer;
 	private Handler handler;
