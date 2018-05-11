@@ -74,6 +74,16 @@ public class House
 		gr.draw(bounds);
 	}
 	
+	/** Changes status of house
+	 */
+	public void update()
+	{
+		if (isOpen())
+			status = CLOSED;
+		else
+			status = OPEN;
+	}
+	
 	/** Returns bounding rectangle
 	 *  @return the house's bounding rectangle
 	 */
