@@ -35,7 +35,7 @@ public class MapComponent extends Canvas
 		handler.addPlayer(new Player(new Position(WIDTH / 2, HEIGHT / 2, 28, 30, 0, 0), 0));
 		handler.addCharacter(new Box(new Position(WIDTH / 2, HEIGHT / 2, 28, 30, 2, 2), 0));
 		handler.addObstacle(new Platform(new Position(WIDTH / 2, HEIGHT/2, 28, 30, 0, 0)));
-		
+		handler.addHouse(new House(new Position(0, HEIGHT / 3, 30, 30, 0, 0), 0, Color.RED));
 	}
 	
 	/** Calls the handler's update method which updates all of the characters

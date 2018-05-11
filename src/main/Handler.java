@@ -106,16 +106,16 @@ public class Handler
 		 obstacles.remove(obstacle);
 	}
 	
-	/** 
-	 *  @param 
+	/** Adds a house
+	 *  @param house the house to add
 	 */
 	public void addHouse(House house)
 	{
 		houses.add(house);
 	}
 	
-	/** 
-	 *  @param 
+	/** Removes a house
+	 *  @param house the house to remove
 	 */
 	public void removeHouse(House house)
 	{
