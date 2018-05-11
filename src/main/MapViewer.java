@@ -1,5 +1,5 @@
 /** 
- *  Displays and continuously updates the game
+a *  Displays and continuously updates the game
  *  @author Conor Mai, Guangze Zu, Emily Lam
  *  Teacher: Ishman
  *  Period: 04
@@ -17,12 +17,13 @@ import javax.swing.Timer;
 public class MapViewer extends Canvas
 {
 	private static Timer drawTimer;
+	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9;
 	
 	/** Creates a new Map
 	 */
 	public static void main(String[] args) 
 	{
-		new MapComponent();
+		new MapViewer(WIDTH, HEIGHT, "Game", new MapComponent());
 	}
 	
 	/**Creates a new frame with the given width height and game

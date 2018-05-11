@@ -45,18 +45,20 @@ public class Player extends Character
 	public void update()
 	{
 		// Gravity
-		setX(getX() + getVelX());
-		
-		if (getVelY() > 0)
-			setVelY(getVelY() + 2);
-		else
-			setVelY(getVelY() + 1);
-		
-		setY(getY() + getVelY());
-		
-		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-		checkCollisions();
-		
+		if(alive)
+		{
+			setX(getX() + getVelX());
+			
+			if (getVelY() > 0)
+				setVelY(getVelY() + 2);
+			else
+				setVelY(getVelY() + 1);
+			
+			setY(getY() + getVelY());
+			
+			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+			checkCollisions();
+		}
 	}
 
 	private void checkCollisions()
@@ -88,7 +90,13 @@ public class Player extends Character
 					if(getVelY() > 0)
 					{
 						setVelY(0);
-						setY(tempObstacle.getY());
+						setY((int) (tempObstacle.getY() - tempObstacle.getBoundingRectangle().getHeight()));
+						setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+					}
+					if(getVelY() < 0)
+					{
+						setVelY(0);
+						setY((int) (tempObstacle.getY() + tempObstacle.getBoundingRectangle().getHeight()));
 						setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 					}
 				}
@@ -121,6 +129,7 @@ public class Player extends Character
 		{
 			gr.setColor(Color.RED);
 			gr.drawString("GAME OVER", 500, 500);
+			setBoundingRectangle(null);
 		}
 		gr.drawString("Points: " + getPoints(), 0, 35);
 	}

@@ -40,7 +40,7 @@ public class Box extends Character {
 		gr.setColor(Color.black);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
-		String s = "T: " + framesTest;
+		String s = "T: " + framesTest /60;
 		TextLayout layout = new TextLayout(s, font, frc);
 		layout.draw(gr, getX(), getY());
 		

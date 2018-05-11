@@ -13,9 +13,9 @@ import main.Position;
 
 public class Monster extends Character 
 {
-
-	private static final int UPDATE_DIRECTION_TIME = 50;
-	private static final int SPEED = 20;
+	private static final int MONSTER_SIZE = 20;
+	private static final int UPDATE_DIRECTION_TIME = 20;
+	private static final int SPEED = 5;
 	private int timer;
 	private Handler handler;
 	private int width, height;
@@ -41,7 +41,7 @@ public class Monster extends Character
 		if(timer == UPDATE_DIRECTION_TIME)
 		{
 			Player p1 = handler.getPlayer(1);
-			if(!(p1 == null))
+			if(!(p1.getBoundingRectangle() == null))
 			{
 				double angle = Math.atan2(p1.getY() - getY(), p1.getX() - getX());
 				setVelY((int) (SPEED * Math.sin(angle)));
@@ -62,9 +62,9 @@ public class Monster extends Character
 	{
 		//draw the @ string at x , y
 		gr.setColor(Color.BLACK);
-		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
+		Font font = new Font(Font.MONOSPACED, Font.PLAIN, MONSTER_SIZE);
 		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout layout = new TextLayout("M", font, frc);
+		TextLayout layout = new TextLayout(">M<", font, frc);
 		layout.draw(gr, getX(), getY());
 		
 		Rectangle2D bounds = layout.getBounds();

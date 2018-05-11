@@ -17,8 +17,8 @@ public class Platform extends Obstacle {
 
 	public Platform(int x, int y, int width, int height) {
 		super(x, y);
-		this.width = width;
-		this.height = height;
+		this.width = 0;
+		this.height = 0;
 		setBoundingRectangle(new Rectangle(x, y, width, height));
 		// TODO Auto-generated constructor stub
 	}
@@ -28,18 +28,17 @@ public class Platform extends Obstacle {
 		// TODO Auto-generated method stub
 		
 		gr.setColor(Color.GRAY);
-//		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
-//		FontRenderContext frc = gr.getFontRenderContext();
-//		TextLayout layout = new TextLayout("_____", font, frc);
-//		layout.draw(gr, (getPosition().getX()), getPosition().getY());
-//
-//		gr.setColor(Color.RED);
-//		
-//		Rectangle2D bounds = layout.getBounds();
-//		bounds.setRect(bounds.getX()+getPosition().getX(),
-//                bounds.getY()+getPosition().getY(),
-//                bounds.getWidth(),
-//                bounds.getHeight());
+		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
+		FontRenderContext frc = gr.getFontRenderContext();
+		TextLayout layout = new TextLayout("XXXXX", font, frc);
+		layout.draw(gr, getX(), getY());
+
+		gr.setColor(Color.RED);
+		
+		Rectangle2D bounds = layout.getBounds();
+		height = (int) bounds.getHeight();
+		width = (int) bounds.getWidth();
+		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		gr.draw(getBoundingRectangle());
 	}
 

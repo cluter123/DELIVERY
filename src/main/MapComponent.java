@@ -3,6 +3,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import characters.Box;
 import characters.Monster;
@@ -15,7 +17,8 @@ public class MapComponent extends Canvas {
 	 * 
 	 */
 	private static final long serialVersionUID = 582455343476691375L;
-	private static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9; // magic number 
+	
+	 // magic number 
 	private Handler handler;
 	
 	/**Creates a Map with a collection of all of the characters 
@@ -26,12 +29,11 @@ public class MapComponent extends Canvas {
 		handler = new Handler();
 		setFocusable(true); //I don't know what this method does but it made the code work
 		addKeyListener(new KeyInput(handler));
-		new MapViewer(WIDTH, HEIGHT, "Game", this);
 		
 		//adding characters to the window
-		handler.addPlayer(new Player(WIDTH / 2, HEIGHT / 2, handler));
-		handler.addCharacter(new Box(WIDTH/2, HEIGHT/2));
-		handler.addObstacle(new Platform(0, HEIGHT / 3 * 2, WIDTH, 100));
+		handler.addPlayer(new Player(MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2, handler));
+		handler.addCharacter(new Box(MapViewer.WIDTH/2, MapViewer.HEIGHT/2));
+		handler.addObstacle(new Platform(0, MapViewer.HEIGHT / 3 * 2, MapViewer.WIDTH, 100));
 		handler.addCharacter(new Monster(0, 0, handler));
 	}
 	
@@ -60,7 +62,7 @@ public class MapComponent extends Canvas {
 		
 		// this is where we will draw the background
 		gr.setColor(Color.white);
-		gr.fillRect(0, 0, WIDTH, HEIGHT);
+		gr.fillRect(0, 0, MapViewer.WIDTH, MapViewer.HEIGHT);
 		
 		handler.draw(gr);
 		
