@@ -17,7 +17,9 @@ import javax.swing.Timer;
 public class MapViewer extends Canvas
 {
 	private static Timer drawTimer;
-	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9;
+	public static final double FRAME_RATIO = .75;
+	public static final int WIDTH = 1000;  
+	public static final int HEIGHT = (int) (WIDTH * FRAME_RATIO);
 	
 	/** Creates a new Map
 	 */
