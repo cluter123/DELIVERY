@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import characters.Box;
 import characters.House;
+import characters.Letter;
 import characters.Monster;
 import characters.Player;
 import obstacles.Platform;
@@ -36,6 +37,7 @@ public class MapComponent extends Canvas {
 			handler.addObstacle(new Platform(MapViewer.WIDTH * k / 4, MapViewer.HEIGHT / 3 * 2));
 		handler.addCharacter(new House(0, MapViewer.HEIGHT /  2, Color.RED));
 		handler.addCharacter(new House(MapViewer.WIDTH * 3 / 4, MapViewer.HEIGHT /  2, Color.BLUE));
+		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT /  2));
 /*		handler.addCharacter(new Monster(0, 0, handler));*/
 		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT /  2));
 	}

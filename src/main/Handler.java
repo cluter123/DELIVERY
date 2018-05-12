@@ -11,11 +11,16 @@ import characters.Player;
 
 public class Handler
 {
-
-	public LinkedList<Character> characters;
-	public LinkedList<Player> playerList;
-	public LinkedList<Obstacle> obstacles;
-	public LinkedList<House> houses;
+	/*
+	 * Conor I know this is more work but hear me out
+	 * Ishman is gonna freak if she sees us with public instance variables
+	 * I changed it everywhere so you don't even have to mess with it
+	 * just use the get methods from now on
+	 */
+	private LinkedList<Character> characters;
+	private LinkedList<Player> playerList;
+	private LinkedList<Obstacle> obstacles;
+	private LinkedList<House> houses;
 	
 	/** Creates a linked list of characters
 	 * 
@@ -89,10 +94,32 @@ public class Handler
 	{
 		obstacles.add(obstacle);
 	}
+	
 	public void removeObstacle(Obstacle obstacle)
 	{
 		 obstacles.remove(obstacle);
 	}
+	
+	public LinkedList<Character> getCharacters()
+	{
+		return characters;
+	}
+	
+	public LinkedList<Player> getPlayerList()
+	{
+		return playerList;
+	}
+	
+	public LinkedList<Obstacle> getObstacles()
+	{
+		return obstacles;
+	}
+	
+	public LinkedList<House> getHouses()
+	{
+		return houses;
+	}
+
 	
 	/**Goes through the collection of characters and finds the player 1 
 	 * and makes it move to the left

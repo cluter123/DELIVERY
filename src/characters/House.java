@@ -11,7 +11,8 @@ import main.Character;
 
 public class House extends Character 
 {
-
+	
+	public static final int HOUSE_POINTS = 100;
 	private int width; 
 	private int height;
 	private Color hue;
@@ -28,12 +29,9 @@ public class House extends Character
 		width = 0;
 		height = 0;
 		id = identity++;
-		setPoints(100);
+		setPoints(HOUSE_POINTS);
 		setBoundingRectangle(new Rectangle(getX(), getY(), width, height));
-		if (id % 2 == 0)
-			status = OPEN;
-		else
-			status = CLOSED;
+		status = CLOSED;
 	}
 	
 	@Override
@@ -74,7 +72,6 @@ public class House extends Character
 		status = OPEN;
 	}
 	
-	
 	/** Returns status of house
 	 * @return true if open, false if else
 	 */
@@ -83,5 +80,12 @@ public class House extends Character
 		if(status.equals(OPEN))
 			return true;
 		return false;
+	}
+	
+	public boolean isOdd()
+	{
+		if (id % 2 == 0)
+			return false;
+		return true;
 	}
 }

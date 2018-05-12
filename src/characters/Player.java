@@ -26,6 +26,7 @@ public class Player extends Character
 	private static final int ID = 1;
 	private int height;
 	private int width;
+	private boolean hasLetter;
 	private boolean alive;
 	Handler handler;
 	TextLayout layout;
@@ -39,6 +40,7 @@ public class Player extends Character
 		super(x, y);
 		this.handler = handle;
 		alive = true;
+		hasLetter = false;
 	}
 	
 	/** Updates the player's position depending on where it is in the frame
@@ -68,8 +70,9 @@ public class Player extends Character
 		// if it falls off the bottom it is no longer alive
 		if(getY() - height > MapViewer.HEIGHT)
 			alive = false;
+		boolean needLetter = false;
 		
-		for(Character tempCharacter : handler.characters)
+		for(Character tempCharacter : handler.getCharacters())
 		{
 			if(getBoundingRectangle().intersects(tempCharacter.getBoundingRectangle()))
 			{
@@ -88,16 +91,37 @@ public class Player extends Character
 				// what happens when it hits the house 
 				if(tempCharacter instanceof House)
 				{
-					if(((House)tempCharacter).isOpen())
+					if(((House)tempCharacter).isOpen() && hasLetter)
 					{
-						setPoints(getPoints() + tempCharacter.getPoints());
+						addPoints(tempCharacter.getPoints());
 						((House)tempCharacter).close();
+						hasLetter = false;
+						needLetter = true;
+					}
+				}
+				if(tempCharacter instanceof Letter)
+				{
+					handler.removeCharacter(tempCharacter);
+					addPoints(tempCharacter.getPoints());
+					hasLetter = true;
+					Letter l = (Letter)tempCharacter;
+					for (House house : handler.getHouses())
+					{
+						if ((house.isOdd() && l.isOdd()) || (!house.isOdd() && !l.isOdd()))
+							house.open();
 					}
 				}
 			}
 		}
-	
-		for(Obstacle tempObstacle : handler.obstacles)
+		
+		if (needLetter && Letter.getOrder() < Letter.ABC_ARRAY.length)
+		{
+			int randX = (int) (Math.random() * (MapViewer.WIDTH - 30));
+			int randY = (int) (Math.random() * (MapViewer.HEIGHT / 2)) + 30;
+			handler.addCharacter(new Letter(randX, randY));
+		}
+			
+		for(Obstacle tempObstacle : handler.getObstacles())
 		{
 			if(getBoundingRectangle().intersects(tempObstacle.getBoundingRectangle()))
 				obstacleHit(tempObstacle);
@@ -109,7 +133,7 @@ public class Player extends Character
 	 */
 	private void obstacleHit(Obstacle o)
 	{
-		// when it hits the playform
+		// when it hits the platform
 		if(o instanceof Platform)
 		{
 			//code that would happen if you hit something

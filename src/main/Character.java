@@ -23,6 +23,12 @@ public abstract class Character {
 	{
 		this.points = points;
 	}
+	
+	public void addPoints(int points)
+	{
+		this.points += points;
+	}
+	
 	public void setBoundingRectangle(Rectangle2D bounds)
 	{
 		this.bounds = bounds;
