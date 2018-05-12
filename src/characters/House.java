@@ -12,32 +12,38 @@ import main.Character;
 public class House extends Character 
 {
 
-	private int width, height;
+	private int width; 
+	private int height;
 	private Color hue;
 	private String status;
+	private int id;
 	private static final String CLOSED = "|X|";
 	private static final String OPEN = "|O|";
+	private static int identity = 1;
 	
 	public House(int x, int y, Color color)
 	{
 		super(x,y);
 		hue = color;
-		status = OPEN;
 		width = 0;
 		height = 0;
+		id = identity++;
 		setPoints(100);
 		setBoundingRectangle(new Rectangle(getX(), getY(), width, height));
+		if (id % 2 == 0)
+			status = OPEN;
+		else
+			status = CLOSED;
 	}
 	
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+	public void update() 
+	{
 	}
 
 	@Override
-	public void draw(Graphics2D gr) {
-		// TODO Auto-generated method stub
-		
+	public void draw(Graphics2D gr) 
+	{
 		gr.setColor(hue);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
@@ -52,7 +58,6 @@ public class House extends Character
 		
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		gr.draw(getBoundingRectangle());
-
 	}
 
 	/** Closes house
@@ -68,7 +73,11 @@ public class House extends Character
 	{
 		status = OPEN;
 	}
-
+	
+	
+	/** Returns status of house
+	 * @return true if open, false if else
+	 */
 	public boolean isOpen() 
 	{
 		if(status.equals(OPEN))

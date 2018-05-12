@@ -40,6 +40,7 @@ public class Player extends Character
 		this.handler = handle;
 		alive = true;
 	}
+	
 	/** Updates the player's position depending on where it is in the frame
 	 */
 	@Override
@@ -88,8 +89,10 @@ public class Player extends Character
 				if(tempCharacter instanceof House)
 				{
 					if(((House)tempCharacter).isOpen())
-					setPoints(getPoints() + tempCharacter.getPoints());
-					((House)tempCharacter).close();
+					{
+						setPoints(getPoints() + tempCharacter.getPoints());
+						((House)tempCharacter).close();
+					}
 				}
 			}
 		}
@@ -97,26 +100,32 @@ public class Player extends Character
 		for(Obstacle tempObstacle : handler.obstacles)
 		{
 			if(getBoundingRectangle().intersects(tempObstacle.getBoundingRectangle()))
+				obstacleHit(tempObstacle);
+		}
+	}
+	
+	/** Stops player when it hits an obstacle
+	 *  @param o the obstacle that was hit
+	 */
+	private void obstacleHit(Obstacle o)
+	{
+		// when it hits the playform
+		if(o instanceof Platform)
+		{
+			//code that would happen if you hit something
+			// if it is under the platform
+			if(getVelY() > 0)
 			{
-				// when it hits the playform
-				if(tempObstacle instanceof Platform)
-				{
-					//code that would happen if you hit something
-					// if it is under the platform
-					if(getVelY() > 0)
-					{
-						setVelY(0);
-						setY((int) (tempObstacle.getY() - tempObstacle.getBoundingRectangle().getHeight()));
-						setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-					}
-					// if it is over the platform
-					if(getVelY() < 0)
-					{
-						setVelY(0);
-						setY((int) (tempObstacle.getY() + tempObstacle.getBoundingRectangle().getHeight()));
-						setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-					}
-				}
+				setVelY(0);
+				setY((int) (o.getY() - o.getBoundingRectangle().getHeight()));
+				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+			}
+			// if it is over the platform
+			if(getVelY() < 0)
+			{
+				setVelY(0);
+				setY((int) (o.getY() + o.getBoundingRectangle().getHeight()));
+				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 			}
 		}
 	}

@@ -6,6 +6,7 @@ package main;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
+import characters.House;
 import characters.Player;
 
 public class Handler
@@ -14,6 +15,7 @@ public class Handler
 	public LinkedList<Character> characters;
 	public LinkedList<Player> playerList;
 	public LinkedList<Obstacle> obstacles;
+	public LinkedList<House> houses;
 	
 	/** Creates a linked list of characters
 	 * 
@@ -23,6 +25,7 @@ public class Handler
 		characters = new LinkedList<Character>();
 		playerList = new LinkedList<Player>();
 		obstacles = new LinkedList<Obstacle>();
+		houses = new LinkedList<House>();
 	}
 	
 	/**Goes through all of the Characters and updates them
@@ -58,6 +61,8 @@ public class Handler
 	public void addCharacter(Character object)
 	{
 		characters.add(object);
+		if (object instanceof House)
+			houses.add((House)object);
 	}
 	
 	/**removes an object from the list of characters
@@ -66,6 +71,8 @@ public class Handler
 	public void removeCharacter(Character object)
 	{
 		characters.remove(object);
+		if (object instanceof House)
+			houses.remove((House)object);
 	}
 	
 	public void addPlayer(Player p)
