@@ -41,6 +41,8 @@ public class Player extends Character
 		this.handler = handle;
 		alive = true;
 		hasLetter = false;
+		height = 0;
+		width = 0;
 	}
 	
 	/** Updates the player's position depending on where it is in the frame
@@ -164,7 +166,7 @@ public class Player extends Character
 		{
 			gr.setColor(Color.BLACK);
 			FontRenderContext frc = gr.getFontRenderContext();
-			TextLayout layout = new TextLayout("W", font, frc);
+			TextLayout layout = new TextLayout("@", font, frc);
 			layout.draw(gr, getX(), getY());
 			gr.drawString("Points: " + getPoints(), 0, 35);
 			Rectangle2D bounds = layout.getBounds();

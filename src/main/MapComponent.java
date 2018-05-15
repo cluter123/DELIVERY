@@ -18,7 +18,6 @@ public class MapComponent extends Canvas {
 	 */
 	private static final long serialVersionUID = 582455343476691375L;
 	
-	 // magic number 
 	private Handler handler;
 	
 	/**Creates a Map with a collection of all of the characters 
@@ -34,7 +33,8 @@ public class MapComponent extends Canvas {
 		handler.addPlayer(new Player(MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2, handler));
 //		handler.addCharacter(new Box(MapViewer.WIDTH/2, MapViewer.HEIGHT/2));
 		for(int k = 0; k < 4; k++)
-			handler.addObstacle(new Platform(MapViewer.WIDTH * k / 4, MapViewer.HEIGHT / 3 * 2));
+			handler.addObstacle(new Platform(MapViewer.WIDTH * k / 4, MapViewer.HEIGHT * 3 / 4, 8));
+		
 		handler.addCharacter(new House(0, MapViewer.HEIGHT /  2, Color.RED));
 		handler.addCharacter(new House(MapViewer.WIDTH * 3 / 4, MapViewer.HEIGHT /  2, Color.BLUE));
 		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT /  2));
