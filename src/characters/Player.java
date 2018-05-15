@@ -20,6 +20,7 @@ import main.MapViewer;
 import main.Obstacle;
 import main.Position;
 import obstacles.Platform;
+import obstacles.WallSegment;
 
 public class Player extends Character 
 {
@@ -151,6 +152,24 @@ public class Player extends Character
 			{
 				setVelY(0);
 				setY((int) (o.getY() + o.getBoundingRectangle().getHeight()));
+				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+			}
+		}
+		if(o instanceof WallSegment)
+		{
+			//code that would happen if you hit something
+			// if it is under the platform
+			if(getVelX() > 0)
+			{
+				setVelX(0);
+				setX((int) (o.getX() - o.getBoundingRectangle().getWidth()));
+				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+			}
+			// if it is over the platform
+			if(getVelX() < 0)
+			{
+				setVelX(0);
+				setX((int) (o.getX() + o.getBoundingRectangle().getWidth()));
 				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 			}
 		}
