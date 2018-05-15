@@ -74,7 +74,7 @@ public class MapViewer extends Canvas
 		ActionListener advanceListener = new AdvanceTimerListener();
 		
 		final int FPS = 60; // this is the fps
-		drawTimer = new Timer(1000/ FPS, advanceListener);
+		drawTimer = new Timer(1000 / FPS, advanceListener);
 		drawTimer.start();
 	}
 }

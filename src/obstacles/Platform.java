@@ -31,7 +31,6 @@ public class Platform extends Obstacle
 	@Override
 	public void draw(Graphics2D gr) 
 	{
-		
 		gr.setColor(Color.GRAY);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();

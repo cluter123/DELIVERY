@@ -34,11 +34,15 @@ public class MapComponent extends Canvas {
 //		handler.addCharacter(new Box(MapViewer.WIDTH/2, MapViewer.HEIGHT/2));
 		for(int k = 0; k < 4; k++)
 			handler.addObstacle(new Platform(MapViewer.WIDTH * k / 4, MapViewer.HEIGHT * 3 / 4, 8));
+		handler.addObstacle(new Platform(0, MapViewer.HEIGHT / 3, 36));
 		
 		handler.addCharacter(new House(0, MapViewer.HEIGHT /  2, Color.RED));
 		handler.addCharacter(new House(MapViewer.WIDTH * 3 / 4, MapViewer.HEIGHT /  2, Color.BLUE));
+		
 		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT /  2));
-		handler.addCharacter(new Monster(0, 0, handler));
+		
+//		handler.addCharacter(new Monster(0, 0, handler));
+		
 		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT /  2));
 	}
 	
