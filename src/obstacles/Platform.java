@@ -20,16 +20,17 @@ public class Platform extends Obstacle {
 		this.width = 0;
 		this.height = 0;
 		setBoundingRectangle(new Rectangle(x, y, width, height));
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void draw(Graphics2D gr) {
+		// TODO Auto-generated method stub
 		
 		gr.setColor(Color.GRAY);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
-		gr.setFont(font);
 		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout layout = new TextLayout("PPPPPP", font, frc);
+		TextLayout layout = new TextLayout("PLATFORM", font, frc);
 		layout.draw(gr, getX(), getY());
 
 		gr.setColor(Color.RED);
@@ -37,8 +38,6 @@ public class Platform extends Obstacle {
 		Rectangle2D bounds = layout.getBounds();
 		height = (int) bounds.getHeight();
 		width = (int) bounds.getWidth();
-		System.out.println((int) bounds.getX());
-		System.out.println((int) bounds.getY());
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		gr.draw(getBoundingRectangle());
 	}
