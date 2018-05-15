@@ -145,7 +145,7 @@ public class Handler
 	{
 		for(Player player : playerList)
 			if(player.getID() == id)
-				if(player.getVelY() == 0)
+				//if(player.getVelY() == 0)
 					player.setVelY(-20);
 		
 	}

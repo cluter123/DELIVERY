@@ -71,7 +71,7 @@ public class Player extends Character
 	private void checkCollisions()
 	{
 		// if it falls off the bottom it is no longer alive
-		if(getY() - height > MapViewer.HEIGHT)
+		if(getY() - height > MapViewer.HEIGHT || getY() < 0)
 			alive = false;
 		boolean needLetter = false;
 		
