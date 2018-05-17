@@ -7,7 +7,6 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 
 import main.Obstacle;
-import main.Position;
 
 public class WallSegment extends Obstacle {
 

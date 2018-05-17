@@ -1,15 +1,20 @@
-
-package obstacles;
+package characters;
 
 import java.awt.Graphics2D;
 
-import main.Obstacle;
+import main.Character;
 
-public class Lava extends Obstacle {
+public class Coin extends Character {
 
-	public Lava(int x, int y) {
+	public Coin(int x, int y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import characters.House;
 import characters.Letter;
 import characters.Monster;
 import characters.Player;
+import obstacles.Lava;
 import obstacles.Platform;
 import obstacles.WallSegment;
 
@@ -42,7 +43,7 @@ public class MapComponent extends Canvas
 		
 		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT * 3 / 4));
 		
-//		handler.addCharacter(new Monster(0, 0, handler));
+		//handler.addCharacter(new Monster(0, 0, handler));
 		
 //		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT * 23 / 25, 8));
 	}

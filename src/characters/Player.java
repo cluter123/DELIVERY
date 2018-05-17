@@ -19,7 +19,6 @@ import main.Character;
 import main.Handler;
 import main.MapViewer;
 import main.Obstacle;
-import main.Position;
 import obstacles.Platform;
 import obstacles.WallSegment;
 

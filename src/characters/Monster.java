@@ -9,7 +9,6 @@ import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.Handler;
-import main.Position;
 
 public class Monster extends Character 
 {
