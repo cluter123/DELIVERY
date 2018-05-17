@@ -50,6 +50,11 @@ public class Letter extends Character
 		return true;
 	}
 	
+	public String getLetter()
+	{
+		return letter;
+	}
+	
 	@Override
 	public void update()
 	{
@@ -62,7 +67,7 @@ public class Letter extends Character
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		gr.setFont(font);
 
-		gr.setColor(Color.BLACK);
+		gr.setColor(Color.GREEN);
 		FontRenderContext frc = gr.getFontRenderContext();
 		TextLayout layout = new TextLayout(letter, font, frc);
 		layout.draw(gr, getX(), getY());
@@ -72,7 +77,7 @@ public class Letter extends Character
 		width = (int) bounds.getWidth();
 		setBoundingRectangle(bounds);
 		
-		gr.setColor(Color.GREEN);
-		gr.draw(getBoundingRectangle());
+//		gr.setColor(Color.GREEN);
+//		gr.draw(getBoundingRectangle());
 	}
 }

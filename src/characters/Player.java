@@ -8,6 +8,7 @@
 package characters;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
@@ -22,6 +23,7 @@ import main.Position;
 import obstacles.Platform;
 import obstacles.WallSegment;
 
+
 public class Player extends Character 
 {
 	private static final int ID = 1;
@@ -29,8 +31,9 @@ public class Player extends Character
 	private int width;
 	private boolean hasLetter;
 	private boolean alive;
-	Handler handler;
-	TextLayout layout;
+	private Handler handler;
+	private boolean win;
+	private Letter letter;
 	
 	/** Creates a Player character with an initial position, points, and a unique id
 	 *  @param pos the initial position of the player
@@ -39,11 +42,13 @@ public class Player extends Character
 	public Player(int x, int y, Handler handle) 
 	{
 		super(x, y);
-		this.handler = handle;
+		handler = handle;
 		alive = true;
 		hasLetter = false;
 		height = 0;
 		width = 0;
+		win = false;
+		letter = null;
 	}
 	
 	/** Updates the player's position depending on where it is in the frame
@@ -55,8 +60,9 @@ public class Player extends Character
 		if(alive)
 		{
 			setX(getX() + getVelX());
+			int FPS = 60;
 			
-			if (getVelY() > 0)
+			if (getVelY() > 0 && getVelY() < FPS - 2)
 				setVelY(getVelY() + 2);
 			else
 				setVelY(getVelY() + 1);
@@ -79,99 +85,131 @@ public class Player extends Character
 		{
 			if(getBoundingRectangle().intersects(tempCharacter.getBoundingRectangle()))
 			{
-				// what happens when it hits the box
-				if(tempCharacter instanceof Box)
-				{
-					//code that would happen if you hit something
-					
-					((Box)tempCharacter).setFramesTest(0);
-				}
 				// what happens when it hits the monster
 				if(tempCharacter instanceof Monster)
-				{
 					alive = false;
-				}
-				// what happens when it hits the house 
 				if(tempCharacter instanceof House)
-				{
-					if(((House)tempCharacter).isOpen() && hasLetter)
-					{
-						addPoints(tempCharacter.getPoints());
-						((House)tempCharacter).close();
-						hasLetter = false;
-						needLetter = true;
-					}
-				}
+					needLetter = hitHouse(tempCharacter);
 				if(tempCharacter instanceof Letter)
-				{
-					handler.removeCharacter(tempCharacter);
-					addPoints(tempCharacter.getPoints());
-					hasLetter = true;
-					Letter l = (Letter)tempCharacter;
-					for (House house : handler.getHouses())
-					{
-						if ((house.isOdd() && l.isOdd()) || (!house.isOdd() && !l.isOdd()))
-							house.open();
-					}
-				}
+					hitLetter(tempCharacter);
 			}
 		}
 		
-		if (needLetter && Letter.getOrder() < Letter.ABC_ARRAY.length)
-		{
-			int randX = (int) (Math.random() * (MapViewer.WIDTH - 30));
-			int randY = (int) (Math.random() * (MapViewer.HEIGHT / 2)) + 30;
-			handler.addCharacter(new Letter(randX, randY));
-		}
+		addLetter(needLetter);
 			
 		for(Obstacle tempObstacle : handler.getObstacles())
 		{
 			if(getBoundingRectangle().intersects(tempObstacle.getBoundingRectangle()))
-				obstacleHit(tempObstacle);
+			{
+				if(tempObstacle instanceof Platform)
+					platformHit(tempObstacle);
+				if(tempObstacle instanceof WallSegment)
+					wallHit(tempObstacle);
+			}
 		}
 	}
 	
-	/** Stops player when it hits an obstacle
-	 *  @param o the obstacle that was hit
+	/** If touched while carrying a letter, house closes, and points
+	 *  are added
+	 *  @param tempChar house to check
+	 *  @return true if new letter needs to be added to map, false if else
 	 */
-	private void obstacleHit(Obstacle o)
+	private boolean hitHouse(Character tempChar)
 	{
-		// when it hits the platform
-		if(o instanceof Platform)
+		if(((House)tempChar).isOpen() && hasLetter)
 		{
-			//code that would happen if you hit something
-			// if it is under the platform
-			if(getVelY() > 0)
-			{
-				setVelY(0);
-				setY((int) (o.getY() - o.getBoundingRectangle().getHeight()));
-				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-			}
-			// if it is over the platform
-			if(getVelY() < 0)
-			{
-				setVelY(0);
-				setY((int) (o.getY() + o.getBoundingRectangle().getHeight()));
-				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-			}
+			addPoints(tempChar.getPoints());
+			((House)tempChar).close();
+			hasLetter = false;
+			return true;
 		}
-		if(o instanceof WallSegment)
+		return false;
+	}
+	
+	/** Removes letter when hit, adds points,
+	 *  and opens the corresponding house
+	 *  @param tempChar the letter to be removed
+	 */
+	private void hitLetter(Character tempChar)
+	{
+		handler.removeCharacter(tempChar);
+		addPoints(tempChar.getPoints());
+		hasLetter = true;
+		letter = (Letter) tempChar;
+		for (House house : handler.getHouses())
 		{
-			//code that would happen if you hit something
-			// if it is under the platform
-			if(getVelX() > 0)
+			if ((house.isOdd() && letter.isOdd()) || 
+					(!house.isOdd() && !letter.isOdd()))
+				house.open();
+		}
+	}
+	
+	/** Adds a letter to the map randomly if houses are closed and there
+	 *  are no letters
+	 *  @param needLetter whether the map needs a new letter
+	 */
+	private void addLetter(boolean needLetter)
+	{
+		if (needLetter)
+		{
+			if (Letter.getOrder() < Letter.ABC_ARRAY.length)
 			{
-				setVelX(0);
-				setX((int) (o.getX() - o.getBoundingRectangle().getWidth()));
-				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+				int avgDimension = 30;
+				int randX = (int) (Math.random() * (MapViewer.WIDTH - avgDimension));
+				int randY = (int) (Math.random() * (MapViewer.HEIGHT / 2)) + avgDimension;
+				handler.addCharacter(new Letter(randX, randY));
 			}
-			// if it is over the platform
-			if(getVelX() < 0)
-			{
-				setVelX(0);
-				setX((int) (o.getX() + o.getBoundingRectangle().getWidth()));
-				setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-			}
+			if (letter.getLetter().equals("Z"))
+				win = true;
+		}
+	}
+	
+	/** Stops player when it hits a platform
+	 *  @param obs the obstacle that was hit
+	 */
+	private void platformHit(Obstacle obs)
+	{
+		// if it is over the platform
+		if(getVelY() > 0)
+		{
+			setVelY(0);
+			setY((int) (obs.getY() - obs.getBoundingRectangle().getHeight()));
+			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+		}
+	}
+	
+	/** Stops player when it hits a wall
+	 *  @param obs the obstacle that was hit
+	 */
+	private void wallHit(Obstacle obs)
+	{
+		// if it hits the left side of the wall
+		if(getVelX() > 0)
+		{
+			handler.stopPlayerRight(1);
+			setX((int) (obs.getX() - obs.getBoundingRectangle().getWidth()));
+			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+		}
+		// if it hits the right side of the wall
+		if(getVelX() < 0)
+		{
+			handler.stopPlayerLeft(1);
+			setX((int) (obs.getX() + obs.getBoundingRectangle().getWidth()));
+			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+		}
+		// if it is under the wall
+		if(getVelY() < 0)
+		{
+			setVelY(0);
+			setY((int) (obs.getY() + height));
+			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
+		}
+		// if it is over the wall
+		if(getVelY() > 0)
+		{
+			setVelY(0);
+			setY((int) (obs.getY() - obs.getBoundingRectangle().getHeight()));
+			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		}
 	}
 	
@@ -181,20 +219,27 @@ public class Player extends Character
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		gr.setFont(font);
 		
-		if(alive)
+		if (win && alive)
+		{
+			gr.setColor(Color.WHITE);
+			gr.fillRect(0, 0, MapViewer.WIDTH, MapViewer.HEIGHT);
+			gr.setColor(Color.CYAN);
+			gr.drawString("CONGRATULATIONS! YOU WIN!", 0, MapViewer.HEIGHT / 2);
+			setBoundingRectangle(null);
+		}
+		else if (alive)
 		{
 			gr.setColor(Color.BLACK);
 			FontRenderContext frc = gr.getFontRenderContext();
 			TextLayout layout = new TextLayout("@", font, frc);
 			layout.draw(gr, getX(), getY());
-			gr.drawString("Points: " + getPoints(), 0, 35);
 			Rectangle2D bounds = layout.getBounds();
 
 			height = (int) bounds.getHeight();
 			width = (int) bounds.getWidth();
 
-			gr.setColor(Color.GREEN);
-			gr.draw(getBoundingRectangle());
+//			gr.setColor(Color.GREEN);
+//			gr.draw(getBoundingRectangle());
 		}
 		else
 		{
@@ -204,7 +249,9 @@ public class Player extends Character
 			gr.drawString("GAME OVER", MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2);
 			setBoundingRectangle(null);
 		}
-		gr.drawString("Points: " + getPoints(), 0, 35);
+		String text = "Points: " + getPoints();
+	    FontMetrics fontMetrics = gr.getFontMetrics();
+	    gr.drawString(text, 0, fontMetrics.getAscent() * 2 / 3);
 	}
 	
 	/** Returns the player's id

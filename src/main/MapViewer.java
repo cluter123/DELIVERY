@@ -58,7 +58,10 @@ public class MapViewer extends Canvas
 		
 		//makes it so that we can see it
 		frame.setVisible(true);
-
+		
+		/** Class comment here
+		 * 
+		 */
 		class AdvanceTimerListener implements ActionListener
 		{
 			@Override

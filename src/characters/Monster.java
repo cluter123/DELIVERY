@@ -64,7 +64,7 @@ public class Monster extends Character
 		gr.setColor(Color.BLACK);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, MONSTER_SIZE);
 		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout layout = new TextLayout("M", font, frc);
+		TextLayout layout = new TextLayout("©", font, frc);
 		layout.draw(gr, getX(), getY());
 		
 		Rectangle2D bounds = layout.getBounds();

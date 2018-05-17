@@ -16,6 +16,7 @@ public class Platform extends Obstacle
 	private int width;
 	private int height;
 	private String platform;
+	public static final String PLATFORM_SYMBOL = "P";
 
 	public Platform(int x, int y, int size) 
 	{
@@ -24,7 +25,7 @@ public class Platform extends Obstacle
 		this.height = 0;
 		platform = "";
 		for (int k = 0; k < size; k++)
-			platform += "P";
+			platform += PLATFORM_SYMBOL;
 		setBoundingRectangle(new Rectangle(x, y, width, height));
 	}
 
@@ -36,15 +37,14 @@ public class Platform extends Obstacle
 		FontRenderContext frc = gr.getFontRenderContext();
 		TextLayout layout = new TextLayout(platform, font, frc);
 		layout.draw(gr, getX(), getY());
-
-		gr.setColor(Color.RED);
 		
 		Rectangle2D bounds = layout.getBounds();
 		height = (int) bounds.getHeight();
 		width = (int) bounds.getWidth();
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		
-		gr.draw(getBoundingRectangle());
+//		gr.setColor(Color.RED);
+//		gr.draw(getBoundingRectangle());
 	}
 
 }

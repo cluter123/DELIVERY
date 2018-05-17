@@ -8,25 +8,29 @@ import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 
 import main.Character;
+import main.MapViewer;
 
-public class Box extends Character {
-
+public class Timer extends Character 
+{
 	private int framesTest;
 	private int height;
 	private int width;
 	
-	public Box(int x, int y) {
+	public Timer(int x, int y) 
+	{
 		super(x, y);
 		framesTest = 0;
-		height = 30;
-		width = 28;
+		height = 0;
+		width = 0;
 	}
 
 	@Override
 	public void update() 
 	{
-		setX(getX() + getVelX());
-		setY(getY() + getVelY());
+		int xMargin = 20;
+		int yMargin = 2;
+		setX(MapViewer.WIDTH - width - xMargin);
+		setY(height + yMargin);
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		framesTest++;
 	}
@@ -34,21 +38,22 @@ public class Box extends Character {
 	@Override
 	public void draw(Graphics2D gr) 
 	{
-		// delete after everyone recognizes the superior code
 		gr.setColor(Color.BLACK);
-		gr.setColor(Color.black);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
-		String s = "T: " + framesTest /60;
+		int seconds = 60;
+		int secondsPassed = (int) (framesTest / seconds) % seconds;
+		int minutesPassed = (int) (framesTest / (seconds * seconds));
+		String s = String.format("%02d:%02d", minutesPassed, secondsPassed);
 		TextLayout layout = new TextLayout(s, font, frc);
 		layout.draw(gr, getX(), getY());
 		
-		//better code just make bounding rectangle this one
-		gr.setColor(Color.RED);
 		Rectangle2D bounds = layout.getBounds();
-		width = (int) bounds.getWidth();
+		if ((int) bounds.getWidth() > width)
+			width = (int) bounds.getWidth();
 		height = (int) bounds.getHeight();
-		gr.draw(getBoundingRectangle());
+//		gr.setColor(Color.RED);
+//		gr.draw(getBoundingRectangle());
 	}
 
 	public int getFramesTest()

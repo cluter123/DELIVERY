@@ -3,7 +3,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import characters.Box;
+import characters.Timer;
 import characters.House;
 import characters.Letter;
 import characters.Monster;
@@ -11,13 +11,8 @@ import characters.Player;
 import obstacles.Platform;
 import obstacles.WallSegment;
 
-public class MapComponent extends Canvas {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 582455343476691375L;
-	
+public class MapComponent extends Canvas 
+{	
 	private Handler handler;
 	
 	/**Creates a Map with a collection of all of the characters 
@@ -26,28 +21,32 @@ public class MapComponent extends Canvas {
 	public MapComponent() 
 	{
 		handler = new Handler();
-		setFocusable(true); //I don't know what this method does but it made the code work
+		setFocusable(true);
 		addKeyListener(new KeyInput(handler));
 		
 		//adding characters to the window
 		handler.addPlayer(new Player(MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2, handler));
-//		handler.addCharacter(new Box(MapViewer.WIDTH/2, MapViewer.HEIGHT/2));
-		for(int k = 0; k < 4; k++)
-			handler.addObstacle(new Platform(MapViewer.WIDTH * k / 4, MapViewer.HEIGHT * 3 / 4, 8));
-		handler.addObstacle(new Platform(0, MapViewer.HEIGHT / 3, 36));
+		handler.addCharacter(new Timer(MapViewer.WIDTH, 0));
+
+		handler.addObstacle(new Platform(0, MapViewer.HEIGHT * 24 / 25, 34));
+		handler.addObstacle(new Platform(0, MapViewer.HEIGHT * 1 / 4, 3));
+		handler.addObstacle(new Platform(MapViewer.WIDTH * 30 / 33, MapViewer.HEIGHT * 1 / 4, 3));
 		
-		handler.addCharacter(new House(0, MapViewer.HEIGHT /  2, Color.RED));
-		handler.addCharacter(new House(MapViewer.WIDTH * 3 / 4, MapViewer.HEIGHT /  2, Color.BLUE));
+		handler.addObstacle(new Platform(MapViewer.WIDTH * 3 / 8, MapViewer.HEIGHT * 3 / 4, 8));
+		handler.addObstacle(new Platform(MapViewer.WIDTH * 1 / 8, MapViewer.HEIGHT * 1 / 2, 8));
+		handler.addObstacle(new Platform(MapViewer.WIDTH * 5 / 8, MapViewer.HEIGHT * 1 / 2, 8));
 		
-		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT /  2));
+		handler.addCharacter(new House(0, 0, Color.RED));
+		handler.addCharacter(new House(0, 0, Color.BLUE));
+		
+		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT * 3 / 4));
 		
 //		handler.addCharacter(new Monster(0, 0, handler));
 		
-		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT /  2));
+//		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT * 23 / 25, 8));
 	}
 	
-	/**Calls the handler's update method which updates all of the characters
-	 * 
+	/** Calls the handler's update method which updates all of the characters
 	 */
 	public void update()
 	{

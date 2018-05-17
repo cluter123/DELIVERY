@@ -11,37 +11,37 @@ import main.Position;
 
 public class WallSegment extends Obstacle {
 
-	private int width, height;
+	private int width;
+	private int height;
+	private int length;
+	public static final String WALL_SYMBOL = "W";
 	
-	public WallSegment(int x, int y) 
+	public WallSegment(int x, int y, int length) 
 	{
 		super(x, y);
 		width = 0;
 		height = 0;
+		this.length = length;
 		setBoundingRectangle(new Rectangle(getX(), getY(), width, height));
 	}
 
 	@Override
 	public void draw(Graphics2D gr) 
 	{
-		// TODO Auto-generated method stub
 		gr.setColor(Color.GRAY);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout W = new TextLayout("W", font, frc);
-		TextLayout A = new TextLayout("A", font, frc);
-		TextLayout L = new TextLayout("L", font, frc);
-		TextLayout L2 = new TextLayout("L", font, frc);
-		width = (int)L2.getBounds().getWidth();
-		height = (int)W.getBounds().getHeight() 
-				+ (int)A.getBounds().getHeight()
-				+ (int)L.getBounds().getHeight()
-				+ (int)L2.getBounds().getHeight();
+		TextLayout[] wall = new TextLayout[length];
+		for (int k = 0; k < length; k++)
+			wall[k] = new TextLayout(WALL_SYMBOL, font, frc);
+
+		width = (int) wall[0].getBounds().getWidth();
+		height = (int) (wall[0].getBounds().getHeight() * length); 
 		
-		W.draw(gr, getX(), getY() - (int)L2.getBounds().getHeight() - (int)L2.getBounds().getHeight()- (int)L2.getBounds().getHeight());
-		A.draw(gr, getX(), getY() - (int)L2.getBounds().getHeight() - (int)L2.getBounds().getHeight());
-		L.draw(gr, getX(), getY() - (int)L2.getBounds().getHeight());
-		L2.draw(gr, getX(), getY());
+		for (int k = 0; k < length; k++)
+		{
+			wall[k].draw(gr, getX(), getY() - ((length - k - 1) * (int) wall[k].getBounds().getHeight()));
+		}
 
 		gr.setColor(Color.RED);
 		
