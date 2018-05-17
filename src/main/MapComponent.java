@@ -35,6 +35,7 @@ public class MapComponent extends Canvas
 		handler.addObstacle(new Platform(MapViewer.WIDTH * 3 / 8, MapViewer.HEIGHT * 3 / 4, 8));
 		handler.addObstacle(new Platform(MapViewer.WIDTH * 1 / 8, MapViewer.HEIGHT * 1 / 2, 8));
 		handler.addObstacle(new Platform(MapViewer.WIDTH * 5 / 8, MapViewer.HEIGHT * 1 / 2, 8));
+		handler.addObstacle(new Platform(MapViewer.WIDTH * 3 / 8, MapViewer.HEIGHT * 1 / 4, 8));
 		
 		handler.addCharacter(new House(0, 0, Color.RED));
 		handler.addCharacter(new House(0, 0, Color.BLUE));
