@@ -1,83 +1,116 @@
+/** 
+ *  An abstract class for all the obstacles in the game
+ *  that stops characters. Can be drawn and position can be updated
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-18-18
+ */
 package main;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public abstract class Obstacle {
-	
-	private int x, y, velX, velY;
+public abstract class Obstacle 
+{
+	private int x;
+	private int y;
+	private int velX;
+	private int velY;
 	private Rectangle2D bounds;
-
+	
+	/** Creates a new obstacle with a given position
+	 *  @param x the initial x coordinate
+	 *  @param y the initial y coordinate
+	 */
 	public Obstacle(int x, int y) 
 	{
 		this.setX(x);
 		this.setY(y);
 	}
 	
+	/** Sets the bounding rectangle of the obstacle
+	 *  @param bounds the new bounding rectangle of the obstacle
+	 */
 	public void setBoundingRectangle(Rectangle2D bounds)
 	{
 		this.bounds = bounds;
 	}
-	
+
+	/** Returns the bounding rectangle of the obstacle
+	 *  @return the bounding rectangle of the obstacle
+	 */
 	public Rectangle2D getBoundingRectangle()
 	{
 		return bounds;
 	}
 
-	public abstract void draw(Graphics2D gr);
-
-	/**
-	 * @return the velY
+	/** Returns the y velocity
+	 *  @return the y velocity
 	 */
-	public int getVelY() {
+	public int getVelY() 
+	{
 		return velY;
 	}
 
-	/**
-	 * @param velY the velY to set
+	/** Sets the y velocity
+	 *  @param velY the new y velocity to set to
 	 */
-	public void setVelY(int velY) {
+	public void setVelY(int velY) 
+	{
 		this.velY = velY;
 	}
 
-	/**
-	 * @return the velX
+	/** Returns the x velocity
+	 *  @return the x velocity
 	 */
-	public int getVelX() {
+	public int getVelX() 
+	{
 		return velX;
 	}
 
-	/**
-	 * @param velX the velX to set
+	/** Sets the x velocity
+	 *  @param velx the new x velocity to set to
 	 */
-	public void setVelX(int velX) {
+	public void setVelX(int velX) 
+	{
 		this.velX = velX;
 	}
 
-	/**
-	 * @return the y
+	/** Returns the y coordinate
+	 *  @return the y coordinate
 	 */
-	public int getY() {
+	public int getY() 
+	{
 		return y;
 	}
 
-	/**
-	 * @param y the y to set
+	/** Sets the y coordinate
+	 *  @param y the new y coordinate to set to
 	 */
-	public void setY(int y) {
+	public void setY(int y) 
+	{
 		this.y = y;
 	}
 
-	/**
-	 * @return the x
+	/** Returns the x coordinate
+	 *  @return the x coordinate
 	 */
-	public int getX() {
+	public int getX() 
+	{
 		return x;
 	}
-
-	/**
-	 * @param x the x to set
+	
+	/** Sets the x coordinate
+	 *  @param x the new x coordinate to set to
 	 */
-	public void setX(int x) {
+	public void setX(int x) 
+	{
 		this.x = x;
 	}
+	
+	/** Draws the character
+	 *  @param gr the Graphics2D Object to draw with
+	 */
+	public abstract void draw(Graphics2D gr);
 }

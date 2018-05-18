@@ -1,17 +1,20 @@
 /** 
- *  Updates player based on key input from user
+ *  Updates player based on key input from user.
+ *  W, up arrow, and space to jump
+ *  A and left arrow to move left
+ *  D and right arrow to move right
  *  @author Conor Mai, Guangze Zu, Emily Lam
  *  Teacher: Ishman
  *  Period: 04
- *  Date: 05-14-18
+ *  Date: 05-18-18
  */
 package main;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter 
 {
-
 	private Handler handle;
 	
 	/** Creates a new KeyInput Object with a given Handler
@@ -29,9 +32,7 @@ public class KeyInput extends KeyAdapter
 	public void keyPressed(KeyEvent e)
 	{
 		int key = e.getKeyCode();
-		System.out.println("Pressed: " + key);
 		
-		//if a player 1 key is pressed it will go through the handle and change its movement
 		//if the A or left key has been pressed move the player to the left
 		if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) 
 			handle.movePlayerLeft(1);
@@ -50,8 +51,7 @@ public class KeyInput extends KeyAdapter
 	public void keyReleased(KeyEvent e)
 	{
 		int key = e.getKeyCode();
-		System.out.println("RELEASED: " + key);
-		//if a player 1 key is released it will go through the handle and change its movement
+		
 		//if the A or left key has been released stop the player to the left
 		if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) 
 			handle.stopPlayerLeft(1);

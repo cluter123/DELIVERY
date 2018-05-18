@@ -1,4 +1,13 @@
+/** 
+ *  A monster that follows the player. Can be drawn
+ *  and updated.
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-18-18
+ */
 package characters;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -9,17 +18,22 @@ import java.awt.geom.Rectangle2D;
 
 import main.Character;
 import main.Handler;
-import main.Position;
 
 public class Monster extends Character 
 {
-	private static final int MONSTER_SIZE = 20;
+	private static final int MONSTER_SIZE = 30;
 	private static final int UPDATE_DIRECTION_TIME = 100;
 	private static final int SPEED = 5;
+	private static final String MONSTER_SYMBOL = "©";
 	private int timer;
 	private Handler handler;
 	private int width, height;
 	
+	/** Creates a monster with a given position and handler
+	 *  @param x the initial x coordinate
+	 *  @param y the initial y coordinate
+	 *  @param handler the handler of all game variables
+	 */
 	public Monster(int x, int y, Handler handler) 
 	{
 		super(x, y);
@@ -28,7 +42,9 @@ public class Monster extends Character
 		width = 0;
 		height = 0;
 	}
-
+	
+	/** Updates monster's position in the direction of the player
+	 */
 	@Override
 	public void update() 
 	{
@@ -56,24 +72,22 @@ public class Monster extends Character
 		}
 		timer++;
 	}
-
+	
+	/** Draws the monster
+	 *  @param gr the Graphics2D Object to draw with
+	 */
 	@Override
 	public void draw(Graphics2D gr) 
 	{
-		//draw the @ string at x , y
-		gr.setColor(Color.BLACK);
+		gr.setColor(Color.MAGENTA);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, MONSTER_SIZE);
 		FontRenderContext frc = gr.getFontRenderContext();
-		TextLayout layout = new TextLayout("M", font, frc);
+		TextLayout layout = new TextLayout(MONSTER_SYMBOL, font, frc);
 		layout.draw(gr, getX(), getY());
 		
 		Rectangle2D bounds = layout.getBounds();
-		
 		height = (int) bounds.getHeight();
 		width = (int) bounds.getWidth();
-		
-		gr.setColor(Color.RED);
-		gr.draw(getBoundingRectangle());
 	}
 
 }
