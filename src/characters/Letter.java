@@ -18,7 +18,6 @@ import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 
 import main.Character;
-import main.MapViewer;
 
 public class Letter extends Character
 {

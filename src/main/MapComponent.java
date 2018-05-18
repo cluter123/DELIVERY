@@ -7,10 +7,12 @@
  *  Date: 05-18-18
  */
 package main;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+
 import characters.Timer;
 import characters.House;
 import characters.Letter;
@@ -33,7 +35,7 @@ public class MapComponent extends Canvas
 		
 		//adding characters to the window
 		handler.addPlayer(new Player(MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2, handler));
-		handler.addCharacter(new Timer(MapViewer.WIDTH, 0));
+		handler.addTimer(new Timer(MapViewer.WIDTH, 0));
 
 		handler.addObstacle(new Platform(0, MapViewer.HEIGHT * 24 / 25, 34));
 		handler.addObstacle(new Platform(0, MapViewer.HEIGHT * 1 / 4, 3));
@@ -48,8 +50,9 @@ public class MapComponent extends Canvas
 		handler.addCharacter(new House(0, 0, Color.BLUE));
 		
 		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT * 3 / 4));
+		handler.addCoin();
 		
-//		handler.addCharacter(new Monster(0, 0, handler));
+		handler.addCharacter(new Monster(0, 0, handler));
 		
 //		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT * 23 / 25, 8));
 	}

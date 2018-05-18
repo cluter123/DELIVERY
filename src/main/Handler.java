@@ -10,8 +10,10 @@ package main;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
+import characters.Coin;
 import characters.House;
 import characters.Player;
+import characters.Timer;
 
 public class Handler
 {
@@ -19,9 +21,11 @@ public class Handler
 	private LinkedList<Player> playerList;
 	private LinkedList<Obstacle> obstacles;
 	private LinkedList<House> houses;
+	private LinkedList<Coin> coins;
+	private Timer timer;
 	
-	/** Creates a new handler with empty lists of characters,
-	 *  players, obstacles, and houses
+	/** Creates a new handler with a timer and empty lists of characters,
+	 *  players, obstacles, houses, and coins
 	 */
 	public Handler() 
 	{
@@ -29,17 +33,29 @@ public class Handler
 		playerList = new LinkedList<Player>();
 		obstacles = new LinkedList<Obstacle>();
 		houses = new LinkedList<House>();
+		coins = new LinkedList<Coin>();
+		timer = null;
 	}
 	
-	/** Goes through all of the Characters and updates them
+	/** Goes through all of the Characters and the timer and updates them
 	 */
 	public void update()
 	{
 		for(Character tempCharacter : characters)
 			tempCharacter.update();
 		
+		for(Coin tempCoin : coins)
+			tempCoin.update();
+		
 		for(Player tempPlayer : playerList)
 			tempPlayer.update();
+		
+		if (timer.getFrames() % 200 == 0)
+		{
+			addCoin();
+			addCoin();
+			removeCoin();
+		}
 	}
 	
 	/** Goes through all of the Characters and makes them draw themselves
@@ -52,7 +68,10 @@ public class Handler
 		
 		for(Character tempCharacter : characters)
 			tempCharacter.draw(gr);
-	
+		
+		for(Coin tempCoin : coins)
+			tempCoin.draw(gr);
+		
 		for(Player tempPlayer : playerList)
 			tempPlayer.draw(gr);
 	}
@@ -109,6 +128,48 @@ public class Handler
 		 obstacles.remove(obstacle);
 	}
 	
+	/** Adds a timer
+	 *  @param timer the timer to be added
+	 */
+	public void addTimer(Timer timer)
+	{
+		this.timer = timer;
+	}
+	
+	/** Adds a coin with a random position
+	 */
+	public void addCoin()
+	{
+		int avgDimension = 30;
+		int randX = (int) (Math.random() * (MapViewer.WIDTH - avgDimension));
+		int randY = (int) (Math.random() * (MapViewer.HEIGHT * 4 / 5)) + 
+				(MapViewer.HEIGHT * 1 / 10);
+		coins.add(new Coin(randX, randY));
+	}
+	
+	/** Removes the first coin
+	 */
+	public void removeCoin()
+	{
+		coins.removeFirst();
+	}
+	
+	/** Removes the given coin
+	 *  @param coin the coin to be removed
+	 */
+	public void removeCoin(Coin coin)
+	{
+		coins.remove(coin);
+	}
+	
+	/** Returns the timer
+	 *  @return the timer
+	 */
+	public Timer getTimer()
+	{
+		return timer;
+	}
+	
 	/** Returns the list of characters
 	 *  @return the list of characters
 	 */
@@ -139,6 +200,14 @@ public class Handler
 	public LinkedList<House> getHouses()
 	{
 		return houses;
+	}
+	
+	/** Returns the list of coins
+	 *  @return the list of coins
+	 */
+	public LinkedList<Coin> getCoins()
+	{
+		return coins;
 	}
 	
 	/** Goes through the collection of characters and finds the player 

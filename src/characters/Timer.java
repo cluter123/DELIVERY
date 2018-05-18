@@ -7,7 +7,7 @@
  *  Date: 05-18-18
  */
 package characters;
-import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -20,7 +20,7 @@ import main.MapViewer;
 
 public class Timer extends Character 
 {
-	private int framesTest;
+	private int frames;
 	private int height;
 	private int width;
 	
@@ -31,7 +31,7 @@ public class Timer extends Character
 	public Timer(int x, int y) 
 	{
 		super(x, y);
-		framesTest = 0;
+		frames = 0;
 		height = 0;
 		width = 0;
 	}
@@ -39,17 +39,17 @@ public class Timer extends Character
 	/** Returns the current frame
 	 *  @return the current frame
 	 */
-	public int getFramesTest()
+	public int getFrames()
 	{
-		return framesTest;
+		return frames;
 	}
 	
 	/** Sets the current frame
 	 *  @param frame the new frame to set to
 	 */
-	public void setFramesTest(int frame)
+	public void setFrames(int frame)
 	{
-		framesTest = frame;
+		frames = frame;
 	}
 	
 	/** Advances the timer and updates timer's position
@@ -62,7 +62,7 @@ public class Timer extends Character
 		setX(MapViewer.WIDTH - width - xMargin);
 		setY(height + yMargin);
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-		framesTest++;
+		frames++;
 	}
 	
 	/** Draws the timer
@@ -71,12 +71,11 @@ public class Timer extends Character
 	@Override
 	public void draw(Graphics2D gr) 
 	{
-		gr.setColor(Color.BLACK);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		FontRenderContext frc = gr.getFontRenderContext();
 		int seconds = 60;
-		int secondsPassed = (int) (framesTest / seconds) % seconds;
-		int minutesPassed = (int) (framesTest / (seconds * seconds));
+		int secondsPassed = (int) (frames / seconds) % seconds;
+		int minutesPassed = (int) (frames / (seconds * seconds));
 		String s = String.format("%02d:%02d", minutesPassed, secondsPassed);
 		TextLayout layout = new TextLayout(s, font, frc);
 		layout.draw(gr, getX(), getY());

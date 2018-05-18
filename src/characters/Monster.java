@@ -7,6 +7,7 @@
  *  Date: 05-18-18
  */
 package characters;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;

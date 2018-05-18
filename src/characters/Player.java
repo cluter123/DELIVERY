@@ -10,6 +10,7 @@
  *  Date: 05-18-18
  */
 package characters;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -68,8 +69,9 @@ public class Player extends Character
 	@Override
 	public void update()
 	{
-		if (alive)
+		if (alive && !win)
 		{
+			handler.getTimer().update();
 			setX(getX() + getVelX());
 			// Gravity
 			int FPS = 60;
@@ -84,8 +86,8 @@ public class Player extends Character
 		}
 	}
 	
-	/** Draws the player and points the player has
-	 *  Ends game if player is dead or player won
+	/** Draws the player, the timer, and the points the player has
+	 *  Ends game if player is dead or player wins
 	 *  @param gr the Graphics2D Object to draw with
 	 */
 	@Override
@@ -94,12 +96,12 @@ public class Player extends Character
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 50);
 		gr.setFont(font);
 		
-		if (win && alive)
+		if (win)
 		{
 			gr.setColor(Color.WHITE);
 			gr.fillRect(0, 0, MapViewer.WIDTH, MapViewer.HEIGHT);
 			gr.setColor(Color.CYAN);
-			gr.drawString("CONGRATULATIONS! YOU WIN!", 0, MapViewer.HEIGHT / 2);
+			gr.drawString("Packages Delivered!", 0, MapViewer.HEIGHT / 2);
 			setBoundingRectangle(null);
 		}
 		else if (alive)
@@ -118,9 +120,10 @@ public class Player extends Character
 			gr.setColor(Color.BLACK);
 			gr.fillRect(0, 0, MapViewer.WIDTH, MapViewer.HEIGHT);
 			gr.setColor(Color.RED);
-			gr.drawString("GAME OVER", MapViewer.WIDTH / 2, MapViewer.HEIGHT / 2);
+			gr.drawString("Game Over", 0, MapViewer.HEIGHT / 2);
 			setBoundingRectangle(null);
 		}
+		handler.getTimer().draw(gr);
 		String text = "Points: " + getPoints();
 	    FontMetrics fontMetrics = gr.getFontMetrics();
 	    gr.drawString(text, 0, fontMetrics.getAscent() * 2 / 3);
@@ -154,7 +157,14 @@ public class Player extends Character
 		
 		if (needLetter)
 			addLetter();
-			
+		
+		for(int k = handler.getCoins().size() - 1; k >= 0; k--)
+		{
+			Coin tempCoin = handler.getCoins().get(k);
+			if(getBoundingRectangle().intersects(tempCoin.getBoundingRectangle()))
+				hitCoin(tempCoin);
+		}
+				
 		for(Obstacle tempObstacle : handler.getObstacles())
 		{
 			if(getBoundingRectangle().intersects(tempObstacle.getBoundingRectangle()))
@@ -201,20 +211,30 @@ public class Player extends Character
 		}
 	}
 	
+	/** Removes coin and adds points to player
+	 */
+	private void hitCoin(Coin tempChar)
+	{
+		handler.removeCoin((Coin)tempChar);
+		addPoints(tempChar.getPoints());
+	}
+	
 	/** Adds a letter to the map randomly if houses are closed and there
 	 *  are no letters
 	 *  @param needLetter whether the map needs a new letter
 	 */
 	private void addLetter()
 	{
-		if (Letter.getOrder() < Letter.ABC_ARRAY.length)
+		int abcLength = Letter.ABC_ARRAY.length;
+		if (Letter.getOrder() < abcLength)
 		{
 			int avgDimension = 30;
 			int randX = (int) (Math.random() * (MapViewer.WIDTH - avgDimension));
-			int randY = (int) (Math.random() * (MapViewer.HEIGHT * 9 / 10)) + avgDimension;
+			int randY = (int) (Math.random() * (MapViewer.HEIGHT * 4 / 5)) + 
+					(MapViewer.HEIGHT * 1 / 10);
 			handler.addCharacter(new Letter(randX, randY));
 		}
-		if (letter.getLetter().equals("Z"))
+		if (letter.getLetter().equals(Letter.ABC_ARRAY[abcLength - 1]))
 			win = true;
 	}
 	
