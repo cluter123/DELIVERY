@@ -19,7 +19,6 @@ import characters.Letter;
 import characters.Monster;
 import characters.Player;
 import obstacles.Platform;
-import obstacles.WallSegment;
 
 public class MapComponent extends Canvas 
 {	

@@ -2,7 +2,7 @@
  *  Creates a Player character to be controlled by the user.
  *  Can be drawn and updated. Handles all collisions with
  *  other game variables. Can stand on platforms, collect
- *  letters, open or close houses, and be killed by monsters.
+ *  letters and coins, open or close houses, and be killed by monsters.
  *  Ends game if dead or delivers all letters
  *  @author Conor Mai, Guangze Zu, Emily Lam
  *  Teacher: Ishman
@@ -25,7 +25,6 @@ import main.Handler;
 import main.MapViewer;
 import main.Obstacle;
 import obstacles.Platform;
-import obstacles.WallSegment;
 
 public class Player extends Character 
 {
@@ -133,12 +132,12 @@ public class Player extends Character
 	 *  game variables and handles each collision accordingly. Monsters
 	 *  kill player. Houses open when letter is picked up or close when
 	 *  letters are delivered. Letters can be picked up. Obstacles
-	 *  stop player.
+	 *  stop player. Coins add points.
 	 */
 	private void checkCollisions()
 	{
 		// if it falls off the bottom it is no longer alive
-		if(getY() - height > MapViewer.HEIGHT || getY() < 0)
+		if(getY() - height > MapViewer.HEIGHT)
 			alive = false;
 		boolean needLetter = false;
 		
@@ -171,8 +170,6 @@ public class Player extends Character
 			{
 				if(tempObstacle instanceof Platform)
 					platformHit(tempObstacle);
-				if(tempObstacle instanceof WallSegment)
-					wallHit(tempObstacle);
 			}
 		}
 	}
@@ -250,37 +247,5 @@ public class Player extends Character
 			setY((int) (obs.getY() - obs.getBoundingRectangle().getHeight()));
 			setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		}
-	}
-	
-	/** Stops player when it hits a wall
-	 *  @param obs the obstacle that was hit
-	 */
-	private void wallHit(Obstacle obs)
-	{
-		// if it hits the left side of the wall
-		if(getVelX() > 0)
-		{
-			handler.stopPlayerRight(1);
-			setX((int) (obs.getX() - obs.getBoundingRectangle().getWidth()));
-		}
-		// if it hits the right side of the wall
-		if(getVelX() < 0)
-		{
-			handler.stopPlayerLeft(1);
-			setX((int) (obs.getX() + obs.getBoundingRectangle().getWidth()));
-		}
-		// if it is under the wall
-		if(getVelY() < 0)
-		{
-			setVelY(0);
-			setY((int) (obs.getY() + height));
-		}
-		// if it is over the wall
-		if(getVelY() > 0)
-		{
-			setVelY(0);
-			setY((int) (obs.getY() - obs.getBoundingRectangle().getHeight()));
-		}
-		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 	}
 }
