@@ -1,3 +1,11 @@
+/** 
+ *  Creates all game variables like characters and obstacles.
+ *  Can update and draw all of them
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-18-18
+ */
 package main;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -8,7 +16,6 @@ import characters.House;
 import characters.Letter;
 import characters.Monster;
 import characters.Player;
-import obstacles.Lava;
 import obstacles.Platform;
 import obstacles.WallSegment;
 
@@ -16,8 +23,7 @@ public class MapComponent extends Canvas
 {	
 	private Handler handler;
 	
-	/**Creates a Map with a collection of all of the characters 
-	 * 
+	/** Creates a MapComponent and adds all the game variables 
 	 */
 	public MapComponent() 
 	{
@@ -43,7 +49,7 @@ public class MapComponent extends Canvas
 		
 		handler.addCharacter(new Letter(MapViewer.WIDTH / 4, MapViewer.HEIGHT * 3 / 4));
 		
-		//handler.addCharacter(new Monster(0, 0, handler));
+//		handler.addCharacter(new Monster(0, 0, handler));
 		
 //		handler.addObstacle(new WallSegment(MapViewer.WIDTH / 2, MapViewer.HEIGHT * 23 / 25, 8));
 	}
@@ -55,9 +61,8 @@ public class MapComponent extends Canvas
 		handler.update();
 	}
 	
-	/**Creates a bufferStrategy if there is none
-	 * each time it is called it creates a new Graphics that draws the graphics
-	 * 
+	/** Creates a bufferStrategy if there is none
+	 *  each time it is called it creates a new Graphics that draws the graphics
 	 */
 	public void draw()
 	{
@@ -79,6 +84,4 @@ public class MapComponent extends Canvas
 		gr.dispose();
 		bs.show();
 	}
-	
-
 }

@@ -1,3 +1,11 @@
+/**
+ *  A Timer that runs based off the game's frame rate.
+ *  Can be drawn and updated. Can set and return frame rate test
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-18-18
+ */
 package characters;
 import java.awt.Color;
 import java.awt.Font;
@@ -16,6 +24,10 @@ public class Timer extends Character
 	private int height;
 	private int width;
 	
+	/** Creates a new Timer with a given position
+	 * @param x the initial x position
+	 * @param y the initial y position
+	 */
 	public Timer(int x, int y) 
 	{
 		super(x, y);
@@ -23,7 +35,25 @@ public class Timer extends Character
 		height = 0;
 		width = 0;
 	}
-
+	
+	/** Returns the current frame
+	 *  @return the current frame
+	 */
+	public int getFramesTest()
+	{
+		return framesTest;
+	}
+	
+	/** Sets the current frame
+	 *  @param frame the new frame to set to
+	 */
+	public void setFramesTest(int frame)
+	{
+		framesTest = frame;
+	}
+	
+	/** Advances the timer and updates timer's position
+	 */
 	@Override
 	public void update() 
 	{
@@ -34,7 +64,10 @@ public class Timer extends Character
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
 		framesTest++;
 	}
-
+	
+	/** Draws the timer
+	 *  @param gr the Graphics2D Object to draw with
+	 */
 	@Override
 	public void draw(Graphics2D gr) 
 	{
@@ -52,17 +85,5 @@ public class Timer extends Character
 		if ((int) bounds.getWidth() > width)
 			width = (int) bounds.getWidth();
 		height = (int) bounds.getHeight();
-//		gr.setColor(Color.RED);
-//		gr.draw(getBoundingRectangle());
-	}
-
-	public int getFramesTest()
-	{
-		return framesTest;
-	}
-	
-	public void setFramesTest(int frame)
-	{
-		framesTest = frame;
 	}
 }

@@ -1,7 +1,11 @@
-package main;
-/**
- * @author Conor Mai
+/** 
+ *  Contains and updates all the characters and obstacles in the game
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-18-18
  */
+package main;
 
 import java.awt.Graphics2D;
 import java.util.LinkedList;
@@ -16,7 +20,8 @@ public class Handler
 	private LinkedList<Obstacle> obstacles;
 	private LinkedList<House> houses;
 	
-	/** Creates a linked list of characters
+	/** Creates a new handler with empty lists of characters,
+	 *  players, obstacles, and houses
 	 */
 	public Handler() 
 	{
@@ -26,8 +31,7 @@ public class Handler
 		houses = new LinkedList<House>();
 	}
 	
-	/**Goes through all of the Characters and updates them
-	 * 
+	/** Goes through all of the Characters and updates them
 	 */
 	public void update()
 	{
@@ -39,7 +43,7 @@ public class Handler
 	}
 	
 	/** Goes through all of the Characters and makes them draw themselves
-	 *  @param g the Graphics2D object to draw with
+	 *  @param gr the Graphics2D object to draw with
 	 */
 	public void draw(Graphics2D gr)
 	{
@@ -137,9 +141,9 @@ public class Handler
 		return houses;
 	}
 	
-	/**Goes through the collection of characters and finds the player 
-	 * and moves the player left
-	 * @param id the id of the player to move
+	/** Goes through the collection of characters and finds the player 
+	 *  and moves the player left
+	 *  @param id the id of the player to move
 	 */
 	public void movePlayerLeft(int id)
 	{
@@ -150,9 +154,9 @@ public class Handler
 		}
 	}
 	
-	/**Goes through the collection of characters and finds the player 
-	 * and moves the player right
-	 * @param id the id of the player to move
+	/** Goes through the collection of characters and finds the player 
+	 *  and moves the player right
+	 *  @param id the id of the player to move
 	 */
 	public void movePlayerRight(int id)
 	{
@@ -163,9 +167,9 @@ public class Handler
 		}
 	}
 	
-	/**Goes through the collection of characters and finds the player 
-	 * and moves the player up
-	 * @param id the id of the player to move
+	/** Goes through the collection of characters and finds the player 
+	 *  and moves the player up
+	 *  @param id the id of the player to move
 	 */
 	public void movePlayerUp(int id)
 	{
@@ -177,9 +181,9 @@ public class Handler
 		}
 	}
 	
-	/**Goes through the collection of characters and finds the player 1 
-	 * and stops it if it is moving to the left
-	 * @param id the id of the player to stop
+	/** Goes through the collection of characters and finds the player 
+	 *  and stops it if it is moving to the left
+	 *  @param id the id of the player to stop
 	 */
 	public void stopPlayerLeft(int id) 
 	{
@@ -193,9 +197,9 @@ public class Handler
 		}
 	}
 	
-	/**Goes through the collection of characters and finds the player 1 
-	 * and stops it if it is moving to the right
-	 * @param id the id of the player to stop
+	/** Goes through the collection of characters and finds the player 
+	 *  and stops it if it is moving to the right
+	 *  @param id the id of the player to stop
 	 */
 	public void stopPlayerRight(int id)
 	{
@@ -215,9 +219,9 @@ public class Handler
 	 */
 	public Player getPlayer(int id) 
 	{
-		for(Player player : playerList)
+		for (Player player : playerList)
 		{
-			if(player.getID() == id)
+			if (player.getID() == id)
 				return player;
 		}
 		return null;

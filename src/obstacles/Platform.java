@@ -1,3 +1,10 @@
+/** 
+ *  A Platform made up of the letter "P". Can be drawn.
+ *  @author Conor Mai, Guangze Zu, Emily Lam
+ *  Teacher: Ishman
+ *  Period: 04
+ *  Date: 05-18-18
+ */
 package obstacles;
 
 import java.awt.Color;
@@ -12,12 +19,17 @@ import main.Obstacle;
 
 public class Platform extends Obstacle 
 {
-
+	public static final String PLATFORM_SYMBOL = "P";
+	
 	private int width;
 	private int height;
 	private String platform;
-	public static final String PLATFORM_SYMBOL = "P";
-
+	
+	/** Creates a new platform with a given position and size
+	 *  @param x the initial x position 
+	 *  @param y the initial y position
+	 *  @param size the length of the platform
+	 */
 	public Platform(int x, int y, int size) 
 	{
 		super(x, y);
@@ -28,7 +40,10 @@ public class Platform extends Obstacle
 			platform += PLATFORM_SYMBOL;
 		setBoundingRectangle(new Rectangle(x, y, width, height));
 	}
-
+	
+	/** Draws the platform
+	 *  @param gr the Graphics2D Object to draw with
+	 */
 	@Override
 	public void draw(Graphics2D gr) 
 	{
@@ -42,9 +57,6 @@ public class Platform extends Obstacle
 		height = (int) bounds.getHeight();
 		width = (int) bounds.getWidth();
 		setBoundingRectangle(new Rectangle(getX(), getY() - height, width, height));
-		
-//		gr.setColor(Color.RED);
-//		gr.draw(getBoundingRectangle());
 	}
 
 }
