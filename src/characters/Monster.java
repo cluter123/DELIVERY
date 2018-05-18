@@ -21,7 +21,7 @@ import main.Handler;
 
 public class Monster extends Character 
 {
-	private static final int MONSTER_SIZE = 20;
+	private static final int MONSTER_SIZE = 30;
 	private static final int UPDATE_DIRECTION_TIME = 100;
 	private static final int SPEED = 5;
 	private static final String MONSTER_SYMBOL = "©";
@@ -79,7 +79,7 @@ public class Monster extends Character
 	@Override
 	public void draw(Graphics2D gr) 
 	{
-		gr.setColor(Color.BLACK);
+		gr.setColor(Color.MAGENTA);
 		Font font = new Font(Font.MONOSPACED, Font.PLAIN, MONSTER_SIZE);
 		FontRenderContext frc = gr.getFontRenderContext();
 		TextLayout layout = new TextLayout(MONSTER_SYMBOL, font, frc);

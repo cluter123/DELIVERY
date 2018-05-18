@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class MapViewer extends Canvas
@@ -61,6 +62,12 @@ public class MapViewer extends Canvas
 		
 		//makes it so that we can see it
 		frame.setVisible(true);
+		
+		//tutorial
+		JOptionPane.showOptionDialog(null, 
+				"Use W, A, D, Space, or arrow keys to move. Hold jump for an extra boost!", 
+				"Tutorial", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+				new String[]{"Start!"}, null);
 		
 		/** An advance timer listener that updates and draws the map
 		 *  based on a timer
